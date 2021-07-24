@@ -5,6 +5,8 @@ export default {
     'pages/tag/list/index',
     'pages/tag/form/index',
     
+    'pages/account/index',
+    
     'pages/personal/index',
   ],
   window: {

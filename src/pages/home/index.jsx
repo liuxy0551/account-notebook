@@ -4,7 +4,6 @@ import Taro from '@tarojs/taro'
 import TopBar from '../../components/TopBar/index'
 import Empty from '../../components/Empty/index'
 import Tabs from './components/Tabs/index'
-import { initTagList } from '../../utils'
 import addBtnUrl from '../../assets/images/add-btn.png'
 
 import './index.scss'
@@ -12,35 +11,84 @@ import './index.scss'
 export default class Home extends Component {
     state = {
         selectedTagId: null,
-        tagList: []
+        tagList: [],
+        accountList: []
     }
 
     componentDidMount() {
-        const { tagList } = this.state
-        const selectedTagId = tagList[0]?.id
-        this.setState({ selectedTagId })
+        
+    }
 
+    componentDidShow() {
         this.getTagList()
     }
 
     // 获取标签列表
     getTagList = () => {
-        const tagList = Taro.getStorageSync('tagList')
+        const tagList = Taro.getStorageSync('tagList') || []
         this.setState({ tagList })
+        this.tagChange(tagList[0])
+    }
+
+    // 获取标签下的账号列表
+    getAccountList = () => {
+        const { selectedTagId, tagList } = this.state
+        const list = Taro.getStorageSync('accountList') || []
+        let accountList = []
+
+        // 非全部账号
+        if (selectedTagId !== tagList[0]?.id) {
+            for (let account of accountList) {
+                if (account.tagIdList.includes(selectedTagId)) {
+                    accountList.push(account)
+                }
+            }
+        } else {
+            accountList = list
+        }
+
+        this.setState({ accountList })
     }
 
     // 添加账号
     addAccount = () => {
-        initTagList()
+        Taro.navigateTo({ url: `/pages/account/index` })
+    }
+
+    // 编辑
+    editAccount = (item) => {
+        Taro.navigateTo({ url: `/pages/account/index?id=${ item.id }` })
     }
 
     // 左侧tab变化
     tagChange = ({ id: selectedTagId }) => {
-        this.setState({ selectedTagId })
+        this.setState({
+            selectedTagId
+        }, () => {
+            this.getAccountList()
+        })
+    }
+
+    rendAccount = () => {
+        const { accountList } = this.state
+        return (
+            <View className='account-box'>
+                {
+                    accountList.map(item => {
+                        return (
+                            <View className='account-item' key={item.id} onClick={() => { this.editAccount(item) }}>
+                                <View className='account-name'>{ item.name }</View>
+                                <View className='account-username'>{ item.username }</View>
+                            </View>
+                        )
+                    })
+                }
+            </View>
+        )
     }
 
     render() {
-        const { selectedTagId, tagList } = this.state
+        const { selectedTagId, tagList, accountList } = this.state
 
         return (
             <View className='full-page'>
@@ -49,7 +97,9 @@ export default class Home extends Component {
                 <View className='container'>
                     <Tabs tagList={tagList} selectedTagId={selectedTagId} tagChange={this.tagChange} />
                     <View className='account-content'>
-                        <Empty />
+                        {
+                            !!accountList.length ? this.rendAccount() : <Empty />
+                        }
                     </View>
                 </View>
 

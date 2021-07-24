@@ -1,3 +1,3 @@
 ## account-notebook-wechat
 
-## 记账簿微信小程序
+## 记账簿 - 微信小程序

@@ -13,4 +13,8 @@
     position: absolute;
     bottom: 120rpx;
     right: 60rpx;
+    &.password {
+        top: 160rpx;
+        right: 50rpx;
+    }
 }

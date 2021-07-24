@@ -11,19 +11,23 @@ export default class Home extends Component {
         name: '',
         tagId: null,
         tagList: [],
+        nameFocus: false,
         loading: false
     }
 
     componentDidMount() {
         const { id: tagId } = Taro.getCurrentInstance().router.params
-        const tagList = Taro.getStorageSync('tagList')
-        this.setState({ tagId, tagList }, () => {
-            tagId && this.getTag()
+        const tagList = Taro.getStorageSync('tagList') || []
+        this.setState({
+            tagId,
+            tagList
+        }, () => {
+            tagId && this.getDetail()
         })
     }
 
-    // 获取标签详情
-    getTag = () => {
+    // 获取详情
+    getDetail = () => {
         const { tagId, tagList } = this.state
         const { name } = tagList.filter(item => item.id === tagId)[0]
         this.setState({ name })
@@ -37,21 +41,22 @@ export default class Home extends Component {
 
     // 保存
     save = () => {
-        console.log(111)
-        this.setState({ loading: true })
         const { name, tagId, tagList } = this.state
-        const data = tagList.map(item => {
+        if (!name) return this.setState({ nameFocus: true })
+        this.setState({ loading: true })
+
+        const list = tagList.map(item => {
             return {
                 ...item,
                 name: item.id === tagId ? name : item.name
             }
         })
-        !tagId && data.push({
+        !tagId && list.push({
             id: getUuid(),
             name
         })
 
-        setStorage('tagList', data).then(() => {
+        setStorage('tagList', list).then(() => {
             showToast('保存成功').then(() => {
                 this.setState({ loading: false })
                 Taro.navigateBack()
@@ -60,14 +65,14 @@ export default class Home extends Component {
     }
 
     render() {
-        const { name, loading } = this.state
+        const { name, nameFocus, loading } = this.state
 
         return (
             <View className='full-page'>
                 <TopBar title='标签名称' />
 
                 <View className='container'>
-                    <Input className='tag-input' value={name} onInput={this.handleNameChange} placeholder='请输入标签名称' maxlength={30} focus confirmType='done' />
+                    <Input className='tag-input' value={name} onInput={this.handleNameChange} placeholder='请输入标签名称' maxlength={30} focus={nameFocus} onBlur={() => { this.setState({ nameFocus: false }) }} confirmType='done' />
                     <Button className='save-btn' loading={loading} disabled={loading} onClick={this.save}>保 存</Button>
                 </View>
             </View>

@@ -2,9 +2,29 @@
     flex: 1;
     overflow: auto;
     display: flex;
-    .at-tabs {
-    }
     .account-content {
         flex: 1;
+        .account-box {
+            padding: 40rpx;
+            .account-item {
+                padding: 20rpx 0;
+                border-bottom: 2rpx #eee solid;
+                .account-name {
+                    max-width: 420rpx;
+                    font-size: 30rpx;
+                    padding-bottom: 10rpx;
+                    overflow: hidden; // 超出的文本隐藏
+                    white-space: nowrap;
+                    text-overflow: ellipsis; // 溢出用省略号显示
+                }
+                .account-username {
+                    color: #999;
+                    max-width: 420rpx;
+                    overflow: hidden; // 超出的文本隐藏
+                    white-space: nowrap;
+                    text-overflow: ellipsis; // 溢出用省略号显示
+                }
+            }
+        }
     }
 }

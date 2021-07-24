@@ -24,7 +24,7 @@ export default class Home extends Component {
 
     // 获取标签列表
     getTagList = () => {
-        const tagList = Taro.getStorageSync('tagList')
+        const tagList = Taro.getStorageSync('tagList') || []
         this.setState({ tagList })
     }
 
