@@ -1,0 +1,18 @@
+.container {
+    flex: 1;
+    .tag-input {
+        margin: 80rpx;
+        padding: 20rpx;
+        border-bottom: 2rpx #10a25b solid;
+    }
+    .save-btn {
+        color: #fff;
+        width: 550rpx;
+        line-height: 70rpx;
+        border-radius: 40rpx;
+        background-color: #10a25b;
+        position: absolute;
+        bottom: 80rpx;
+        left: 100rpx;
+    }
+}

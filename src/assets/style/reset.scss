@@ -1,0 +1,9 @@
+// 主题色 - 酷安绿 #10A25B rgba(16, 162, 91, 1)      水鸭青 #008080 rgba(0, 128, 128, 1)
+
+/* 改变主题变量，具体变量名可查看 taro-ui/dist/style/variables/default.scss 文件 */
+$color-brand: #10a25b;
+$color-brand-light: #4cb984;
+$color-brand-dark: #0d8249;
+
+/* 引入 Taro UI 默认样式 */
+@import "taro-ui/dist/style/index.scss";

@@ -1,0 +1,37 @@
+.container {
+    flex: 1;
+    .avatar {
+        width: 150rpx;
+        height: 150rpx;
+        border-radius: 12rpx;
+        margin: 80rpx 300rpx 160rpx;
+        box-shadow: 2rpx 2rpx 10rpx -2rpx #999;
+    }
+
+    .row-box {
+        .row-item {
+            padding: 30rpx 50rpx;
+            background-color: #fff;
+            border-top: 2rpx #F5F5F5 solid;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            &:last-child {
+              border-top: 10rpx #F5F5F5 solid;
+            }
+            .name {
+                font-size: 34rpx;
+            }
+            .more-icon {
+                width: 30rpx;
+                height: 30rpx;
+            }
+            .open-setting {
+                width: 100%;
+                opacity: .01;
+                position: absolute;
+                left: 0;
+            }
+        }
+    }
+}

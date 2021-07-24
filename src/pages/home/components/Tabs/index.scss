@@ -1,0 +1,37 @@
+.tag-box {
+    width: 240rpx;
+    height: 100%;
+    background-color: #fff;
+    border-right: 1rpx rgba(204, 204, 204, 0.452) solid;
+    overflow: auto;
+    .tag-item {
+        padding: 25rpx 40rpx;
+        &.active {
+            color: #10A25B;
+            font-weight: 600;
+        }
+        &:first-child {
+            padding-top: 50rpx;
+        }
+        &:last-child {
+            padding-bottom: 50rpx;
+        }
+        .name {
+            white-space: normal;
+            overflow: hidden; // 超出的文本隐藏
+            text-overflow: ellipsis;    // 溢出用省略号显示
+            display: -webkit-box; // 将对象作为弹性伸缩盒子模型显示。
+            -webkit-box-orient: vertical; // 从上到下垂直排列子元素（设置伸缩盒子的子元素排列方式）
+            -webkit-line-clamp: 2; // 这个属性不是css的规范属性，需要组合上面两个属性，表示显示的行数。
+        }
+        .setting-icon {
+            width: 40rpx;
+            height: 40rpx;
+        }
+    }
+}
+
+// 隐藏滚动条
+::-webkit-scrollbar {
+    display: none;
+}

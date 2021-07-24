@@ -1,0 +1,15 @@
+.empty-box {
+    height: 70%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    .no-data {
+        width: 153rpx;
+        height: 100rpx;
+    }
+    .tip {
+        color: #7d8b98;
+        padding-top: 10rpx;
+    }
+}

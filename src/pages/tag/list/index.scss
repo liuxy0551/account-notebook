@@ -1,0 +1,29 @@
+.container {
+    flex: 1;
+    overflow: auto;
+    .tag-box {
+        padding: 25rpx 40rpx;
+        .tag-item {
+            padding: 25rpx 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .tag-name {
+                flex: 1;
+                overflow: hidden; // 超出的文本隐藏
+                white-space: nowrap;
+                text-overflow: ellipsis; // 溢出用省略号显示
+            }
+            .edit-icon {
+                width: 30rpx;
+                height: 30rpx;
+                margin-left: 30rpx;
+            }
+            .delete-icon {
+                width: 30rpx;
+                height: 30rpx;
+                margin-left: 30rpx;
+            }
+        }
+    }
+}

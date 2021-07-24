@@ -1,0 +1,16 @@
+// 主题色 - 酷安绿 #10A25B rgba(16, 162, 91, 1)      水鸭青 #008080 rgba(0, 128, 128, 1)
+
+@import './assets/style/index.scss';
+
+page {
+    color: #333;
+    height: 100%;
+    font-size: 28rpx;
+    // background-color: #f1f0f081;
+}
+
+.full-page {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
