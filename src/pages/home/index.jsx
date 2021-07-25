@@ -79,7 +79,7 @@ export default class Home extends Component {
         })
     }
 
-    rendAccount = () => {
+    rendAccountList = () => {
         const { accountList } = this.state
         return (
             <View className='account-box'>
@@ -112,7 +112,7 @@ export default class Home extends Component {
                     <Tabs tagList={tagList} selectedTagId={selectedTagId} tagChange={this.tagChange} />
                     <View className='account-content'>
                         {
-                            !!accountList.length ? this.rendAccount() : <Empty />
+                            !!accountList.length ? this.rendAccountList() : <Empty />
                         }
                     </View>
                 </View>

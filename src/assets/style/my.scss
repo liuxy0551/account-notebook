@@ -2,8 +2,8 @@
 
 // 浮动的圆形按钮
 .add-btn {
-    width: 50rpx;
-    height: 50rpx;
+    width: 60rpx;
+    height: 60rpx;
     padding: 16rpx;
     border-radius: 50%;
     background-color: #fff;
@@ -15,8 +15,11 @@
     bottom: 120rpx;
     right: 60rpx;
     &.password {
+        width: 50rpx;
+        height: 50rpx;
         top: 160rpx;
         right: 50rpx;
+        opacity: 0;
     }
 }
 
