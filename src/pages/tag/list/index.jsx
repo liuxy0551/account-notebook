@@ -44,7 +44,7 @@ export default class Home extends Component {
         Taro.showModal({
             cancelColor: '#333',
             confirmColor: '#ff0333',
-            content: '删除后关联此标签的账号在“全部账号”中可见，是否删除此标签？',
+            content: `删除后关联此标签的账号在“全部账号”中可见，是否删除此标签？`,
             success: (res) => {
                 const { confirm } = res
                 if (confirm) {

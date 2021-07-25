@@ -51,7 +51,6 @@ export default class Home extends Component {
         } else {
             accountList = list
         }
-
         this.setState({ accountList })
     }
 
@@ -120,7 +119,7 @@ export default class Home extends Component {
 
                 <Image className='add-btn' src={addBtnUrl} onClick={this.addAccount} />
 
-                <AccountDetail accountVisible={accountVisible} account={account} onClose={this.onClose} />
+                <AccountDetail accountVisible={accountVisible} account={account} onClose={this.onClose} getAccountList={this.getAccountList} />
             </View>
         )
     }

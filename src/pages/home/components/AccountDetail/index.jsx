@@ -2,7 +2,9 @@ import { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { AtFloatLayout } from "taro-ui"
 import { View, Image } from '@tarojs/components'
+import { setStorage, showToast } from '../../../../utils'
 import editIconUrl from '../../../../assets/images/edit-icon.png'
+import deleteIconUrl from '../../../../assets/images/delete-icon.png'
 
 import './index.scss'
 
@@ -45,6 +47,28 @@ class AccountDetail extends Component {
         Taro.navigateTo({ url: `/pages/account/form/index?id=${ account?.id }` })
     }
 
+    // 删除
+    deleteAccount = () => {
+        const { account, onClose, getAccountList } = this.props
+        onClose()
+        Taro.showModal({
+            cancelColor: '#333',
+            confirmColor: '#ff0333',
+            content: `是否删除账号：“${ account?.name }”？`,
+            success: (res) => {
+                const { confirm } = res
+                if (confirm) {
+                    let accountList = Taro.getStorageSync('accountList') || []
+                    accountList.splice(accountList.map(item => item.id).indexOf(account?.id), 1)
+                    setStorage('accountList', accountList).then(() => {
+                        getAccountList()
+                        showToast('删除成功')
+                    })
+                }
+            }
+        })
+    }
+
     // 复制
     copyText = (data) => {
         Taro.setClipboardData({ data })
@@ -61,6 +85,7 @@ class AccountDetail extends Component {
                         <View className='account-detail'>
                             <View className='name-icon'>
                                 <View className='name'>{ account.name }</View>
+                                <Image className='icon' src={deleteIconUrl} onClick={this.deleteAccount} />
                                 <Image className='icon' src={editIconUrl} onClick={this.goPage} />
                             </View>
 
