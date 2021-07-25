@@ -8,7 +8,7 @@ const setStorage = (key = '', data = '') => {
             key,
             data,
             success: () => {
-                resolve()
+                resolve(data)
             },
             fail: (err) => {
                 reject(err)

@@ -5,6 +5,7 @@ import TopBar from '../../components/TopBar/index'
 import Empty from '../../components/Empty/index'
 import Tabs from './components/Tabs/index'
 import AccountDetail from './components/AccountDetail/index'
+import { initTagList } from '../../utils'
 import addBtnUrl from '../../assets/images/add-btn.png'
 
 import './index.scss'
@@ -27,8 +28,9 @@ export default class Home extends Component {
     }
 
     // 获取标签列表
-    getTagList = () => {
-        const tagList = Taro.getStorageSync('tagList') || []
+    getTagList = async () => {
+        let tagList = Taro.getStorageSync('tagList') || []
+        if (!tagList.length) tagList = await initTagList()
         this.setState({ tagList })
         this.tagChange(tagList[0])
     }
@@ -67,9 +69,9 @@ export default class Home extends Component {
     }
 
     // 左侧tab变化
-    tagChange = ({ id: selectedTagId }) => {
+    tagChange = (tag) => {
         this.setState({
-            selectedTagId
+            selectedTagId: tag?.id
         }, () => {
             this.getAccountList()
         })
