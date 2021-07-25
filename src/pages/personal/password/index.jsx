@@ -68,7 +68,7 @@ export default class Home extends Component {
         this.setState({ loading: true })
         Taro.showModal({
             cancelColor: '#333',
-            content: `每次打开账号簿都需要输入安全密码，请牢记！`,
+            content: `每次打开账号簿都需要输入安全密码，务必牢记！`,
             success: ({ confirm, cancel }) => {
                 if (confirm) {
                     const info = { password, passwordTip, changed: true, remindDay: getTime(true) }

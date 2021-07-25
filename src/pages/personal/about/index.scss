@@ -1,0 +1,52 @@
+.container {
+    flex: 1;
+    overflow: auto;
+    padding-top: 30rpx;
+    .row-box {
+        width: 690rpx;
+        margin: 0 auto 30rpx;
+        border-radius: 20rpx;
+        background-color: #fff;
+        box-shadow: 0 4rpx 6rpx 4rpx rgba(0, 0, 0, 0.16);
+        &.logo {
+            padding: 30rpx 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        &.center {
+            text-align: center;
+        }
+        .logo-img {
+            width: 300rpx;
+            height: 300rpx;
+            margin-bottom: 30rpx;
+        }
+        .logo-title {
+            font-size: 36rpx;
+            font-weight: 600;
+        }
+        .row-title {
+            font-size: 34rpx;
+            padding: 30rpx 0;
+            text-align: center;
+        }
+        .row-text {
+            color: #A9A9A9;
+            font-size: 30rpx;
+            line-height: 40rpx;
+            padding: 10rpx 40rpx 16rpx 40rpx;
+            &.back {
+                text-indent: 2em;
+            }
+            &:last-child {
+                padding-bottom: 40rpx;
+            }
+        }
+    }
+}
+
+// 隐藏滚动条
+::-webkit-scrollbar {
+    display: none;
+}
