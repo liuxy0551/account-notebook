@@ -46,17 +46,11 @@ const showToast = (title, duration = 1500) => {
     })
 }
 
-// 获取随机数
-const getRandom = (start = 0, end = 100) => {
-    return Math.round(Math.random() * end + start)
-}
-
 export {
     getUuid,
     showToast,
     setStorage,
     getTime,
-    getRandom,
     getTopBarHeight,
     initTagList,
 }

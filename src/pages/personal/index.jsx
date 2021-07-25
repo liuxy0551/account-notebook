@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { View, Image, Button } from '@tarojs/components'
-import { showToast, initTagList } from '../../utils'
+import { showToast } from '../../utils'
 import TopBar from '../../components/TopBar/index'
 import defaultAvatar from '../../assets/images/default_avatar.png'
 import moreIconUrl from '../../assets/images/more-icon.png'
@@ -24,7 +24,7 @@ export default class Home extends Component {
     }
 
     login = () => {
-        initTagList()
+        
     }
 
     // 跳转页面

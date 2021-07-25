@@ -63,8 +63,11 @@ export default class Home extends Component {
     // 编辑
     showAccount= (account) => {
         this.setState({
-            account,
-            accountVisible: true
+            account
+        }, () => {
+            setTimeout(() => {
+                this.setState({ accountVisible: true })
+            }, 50)
         })
     }
 

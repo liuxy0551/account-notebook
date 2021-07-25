@@ -2,7 +2,6 @@ import { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { AtFloatLayout } from "taro-ui"
 import { View, Image } from '@tarojs/components'
-import { getRandom } from '../../../../utils'
 import editIconUrl from '../../../../assets/images/edit-icon.png'
 
 import './index.scss'
@@ -56,7 +55,7 @@ class AccountDetail extends Component {
         const { accountVisible, account, onClose } = this.props
         
         return (
-            <AtFloatLayout isOpened={accountVisible} onClose={onClose} key={`${ account?.id + getRandom() }`}>
+            <AtFloatLayout isOpened={accountVisible} onClose={onClose} key={`${ account?.id }`}>
                 {
                     account && (
                         <View className='account-detail'>
