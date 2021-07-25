@@ -59,7 +59,7 @@ class TagList extends Component {
                         {
                             tagList.map((item, idx) => {
                                 return (
-                                    <View className={`tag-item ${ item.active ? 'active' : '' }`} key={item.id} onClick={() => this.chooseTag(idx)}>{ item.name }</View>
+                                    item.id !== 'all' && <View className={`tag-item ${ item.active ? 'active' : '' }`} key={item.id} onClick={() => this.chooseTag(idx)}>{ item.name }</View>
                                 )
                             })
                         }
