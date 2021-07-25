@@ -14,14 +14,11 @@ class AccountDetail extends Component {
     }
 
     state = {
-        tagList: [],
         tagNameList: [],
         accountList: []
     }
 
     componentDidMount() {
-        const tagList = Taro.getStorageSync('tagList') || []
-        this.setState({ tagList })
     }
 
     componentDidUpdate(prevProps) {
@@ -33,9 +30,9 @@ class AccountDetail extends Component {
 
     // 获取标签列表
     getTagList = () => {
-        const { tagList } = this.state
         const { account } = this.props
         const { tagIdList } = account
+        const tagList = Taro.getStorageSync('tagList') || []
         const tagNameList = []
         for (let tag of tagList) {
             tagIdList.includes(tag.id) && tagNameList.push(tag.name)
