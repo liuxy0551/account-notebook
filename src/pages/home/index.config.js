@@ -1,3 +1,3 @@
 export default {
-  navigationBarTitleText: '账号簿'
+    navigationBarTitleText: '账号簿'
 }

@@ -1,9 +1,10 @@
 import { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { View, Input, Button, Image } from '@tarojs/components'
-import { getUuid, showToast, setStorage } from '../../utils'
-import TopBar from '../../components/TopBar/index'
-import passwordIconUrl from '../../assets/images/password-icon.png'
+import { getUuid, showToast, setStorage, getTime } from '../../../utils'
+import TopBar from '../../../components/TopBar/index'
+import TagList from '../components/TagList'
+import passwordIconUrl from '../../../assets/images/password-icon.png'
 
 import './index.scss'
 
@@ -17,10 +18,12 @@ export default class Home extends Component {
         password: '',
         note: '',
         tagList: [],
+        tagIdList: [],
         loading: false,
         nameFocus: false,
         usernameFocus: false,
-        passwordFocus: false
+        passwordFocus: false,
+        tagListVisible: false
     }
 
     componentDidMount() {
@@ -44,7 +47,7 @@ export default class Home extends Component {
         for (let tag of list) {
             tagIdList.includes(tag.id) && tagList.push(tag)
         }
-        this.setState({ name, username, password, note, tagList })
+        this.setState({ name, username, password, note, tagList, tagIdList })
     }
 
     getPassword = () => {
@@ -77,16 +80,36 @@ export default class Home extends Component {
 
     // 点击标签列表
     handleTagList = () => {
-        console.log(111)
+        this.setState({ tagListVisible: true })
+    }
+
+    onClose = () => {
+        this.setState({ tagListVisible: false })
+    }
+
+    // 选择标签
+    onTagConfirm = (tagList) => {
+        this.onClose()
+        this.setState({ tagList })
     }
 
     // 保存
     save = () => {
         const { accountId, name, username, password, note, tagList } = this.state
         let { accountList } = this.state
-        if (!name) return this.setState({ nameFocus: true })
-        if (!username) return this.setState({ usernameFocus: true })
-        if (!password) return this.setState({ passwordFocus: true })
+        const time = getTime()
+        if (!name) {
+            showToast('请输入账号名称')
+            return this.setState({ nameFocus: true })
+        }
+        if (!username) {
+            showToast('请输入账号')
+            return this.setState({ usernameFocus: true })
+        }
+        if (!password) {
+            showToast('请输入密码')
+            return this.setState({ passwordFocus: true })
+        }
         this.setState({ loading: true })
 
         const tagIdList = tagList.map(item => item.id)
@@ -96,7 +119,8 @@ export default class Home extends Component {
             username,
             password,
             note,
-            tagIdList
+            tagIdList,
+            time
         }
         if (accountId) {
             accountList = accountList.map(item => {
@@ -115,7 +139,7 @@ export default class Home extends Component {
     }
 
     render() {
-        const { title, name, username, password, note, tagList, loading, nameFocus, usernameFocus, passwordFocus } = this.state
+        const { title, name, username, password, note, tagList, tagIdList, loading, nameFocus, usernameFocus, passwordFocus, tagListVisible } = this.state
 
         return (
             <View className='full-page'>
@@ -151,6 +175,8 @@ export default class Home extends Component {
                 </View>
 
                 <Image className='add-btn password' src={passwordIconUrl} onClick={this.getPassword} />
+
+                <TagList tagListVisible={tagListVisible} tagIdList={tagIdList} onConfirm={this.onTagConfirm} onClose={this.onClose} />
             </View>
         )
     }

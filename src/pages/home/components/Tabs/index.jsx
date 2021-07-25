@@ -10,9 +10,6 @@ class Tabs extends Component {
         tagList: [],
         selectedTagId: null
     }
-    state = {
-        
-    }
 
     componentDidMount() {
         

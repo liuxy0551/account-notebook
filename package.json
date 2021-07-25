@@ -9,7 +9,7 @@
     "css": "sass"
   },
   "scripts": {
-    "build:weapp": "taro build --type weapp",
+    "build:weapp": "NODE_ENV=production taro build --type weapp",
     "build:swan": "taro build --type swan",
     "build:alipay": "taro build --type alipay",
     "build:tt": "taro build --type tt",
@@ -38,10 +38,10 @@
     "@babel/runtime": "^7.7.7",
     "@tarojs/cli": "3.3.1",
     "@tarojs/components": "3.3.1",
+    "@tarojs/react": "3.3.1",
     "@tarojs/runtime": "3.3.1",
     "@tarojs/taro": "3.3.1",
     "lodash": "4.17.15",
-    "@tarojs/react": "3.3.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "taro-ui": "^3.0.0-alpha.3"
@@ -50,14 +50,14 @@
     "@babel/core": "^7.8.0",
     "@tarojs/mini-runner": "3.3.1",
     "@tarojs/webpack-runner": "3.3.1",
+    "@types/react": "^17.0.2",
     "@types/webpack-env": "^1.13.6",
     "babel-preset-taro": "3.3.1",
     "eslint": "^6.8.0",
     "eslint-config-taro": "3.3.1",
-    "stylelint": "9.3.0",
-    "@types/react": "^17.0.2",
-    "eslint-plugin-react": "^7.8.2",
     "eslint-plugin-import": "^2.12.0",
-    "eslint-plugin-react-hooks": "^4.2.0"
+    "eslint-plugin-react": "^7.8.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "stylelint": "9.3.0"
   }
 }

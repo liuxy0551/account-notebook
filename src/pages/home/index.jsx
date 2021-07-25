@@ -4,6 +4,7 @@ import Taro from '@tarojs/taro'
 import TopBar from '../../components/TopBar/index'
 import Empty from '../../components/Empty/index'
 import Tabs from './components/Tabs/index'
+import AccountDetail from './components/AccountDetail/index'
 import addBtnUrl from '../../assets/images/add-btn.png'
 
 import './index.scss'
@@ -12,7 +13,9 @@ export default class Home extends Component {
     state = {
         selectedTagId: null,
         tagList: [],
-        accountList: []
+        accountList: [],
+        accountVisible: false,
+        account: null
     }
 
     componentDidMount() {
@@ -38,7 +41,7 @@ export default class Home extends Component {
 
         // 非全部账号
         if (selectedTagId !== tagList[0]?.id) {
-            for (let account of accountList) {
+            for (let account of list) {
                 if (account.tagIdList.includes(selectedTagId)) {
                     accountList.push(account)
                 }
@@ -52,12 +55,15 @@ export default class Home extends Component {
 
     // 添加账号
     addAccount = () => {
-        Taro.navigateTo({ url: `/pages/account/index` })
+        Taro.navigateTo({ url: `/pages/account/form/index` })
     }
 
     // 编辑
-    editAccount = (item) => {
-        Taro.navigateTo({ url: `/pages/account/index?id=${ item.id }` })
+    showAccount= (account) => {
+        this.setState({
+            account,
+            accountVisible: true
+        })
     }
 
     // 左侧tab变化
@@ -76,7 +82,7 @@ export default class Home extends Component {
                 {
                     accountList.map(item => {
                         return (
-                            <View className='account-item' key={item.id} onClick={() => { this.editAccount(item) }}>
+                            <View className='account-item' key={item.id} onClick={() => { this.showAccount(item) }}>
                                 <View className='account-name'>{ item.name }</View>
                                 <View className='account-username'>{ item.username }</View>
                             </View>
@@ -87,8 +93,12 @@ export default class Home extends Component {
         )
     }
 
+    onClose = () => {
+        this.setState({ accountVisible: false })
+    }
+
     render() {
-        const { selectedTagId, tagList, accountList } = this.state
+        const { selectedTagId, tagList, accountList, accountVisible, account } = this.state
 
         return (
             <View className='full-page'>
@@ -104,6 +114,8 @@ export default class Home extends Component {
                 </View>
 
                 <Image className='add-btn' src={addBtnUrl} onClick={this.addAccount} />
+
+                <AccountDetail accountVisible={accountVisible} account={account} onClose={this.onClose} />
             </View>
         )
     }

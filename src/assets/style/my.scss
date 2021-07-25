@@ -1,5 +1,6 @@
 // 自定义样式
 
+// 浮动的圆形按钮
 .add-btn {
     width: 50rpx;
     height: 50rpx;
@@ -16,5 +17,28 @@
     &.password {
         top: 160rpx;
         right: 50rpx;
+    }
+}
+
+// 浮动弹层
+.at-float-layout__container {
+    border-radius: 30rpx 30rpx 0 0;
+    .layout-body {
+        padding: 0 !important;
+    }
+}
+
+// 底部的保存按钮
+.bottom-box {
+    width: 100%;
+    padding: 40rpx 0;
+    background-color: #fff;
+    box-shadow: 0 -16px 16px 0 rgba(0,0,0,0.1);
+    .save-btn {
+        color: #fff;
+        width: 550rpx;
+        line-height: 70rpx;
+        border-radius: 40rpx;
+        background-color: #10a25b;
     }
 }

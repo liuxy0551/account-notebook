@@ -42,7 +42,10 @@ export default class Home extends Component {
     // 保存
     save = () => {
         const { name, tagId, tagList } = this.state
-        if (!name) return this.setState({ nameFocus: true })
+        if (!name) {
+            showToast('请输入标签名称')
+            return this.setState({ nameFocus: true })
+        }
         this.setState({ loading: true })
 
         const list = tagList.map(item => {

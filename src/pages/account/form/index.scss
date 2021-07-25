@@ -5,7 +5,6 @@
     flex-direction: column;
     justify-content: space-between;
     .form-box {
-
         overflow: auto;
         .form-item {
             margin: 60rpx;
@@ -21,20 +20,6 @@
                 padding: 20rpx;
                 border-bottom: 2rpx #10a25b solid;
             }
-        }
-    }
-
-    .bottom-box {
-        width: 100%;
-        padding: 40rpx 0;
-        background-color: #fff;
-        box-shadow: 0 -16px 16px 0 rgba(0,0,0,0.1);
-        .save-btn {
-            color: #fff;
-            width: 550rpx;
-            line-height: 70rpx;
-            border-radius: 40rpx;
-            background-color: #10a25b;
         }
     }
 }

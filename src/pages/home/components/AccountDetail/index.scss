@@ -1,0 +1,46 @@
+.account-detail {
+    .name-icon {
+        width: 670rpx;
+        padding: 30rpx 40rpx 20rpx;
+        border-radius: 30rpx 30rpx 0 0;
+        border-bottom: 2rpx #eee solid;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        .name {
+            flex: 1;
+            font-size: 32rpx;
+            font-weight: 600;
+            max-width: 610rpx;
+            overflow: hidden; // 超出的文本隐藏
+            white-space: nowrap;
+            text-overflow: ellipsis; // 溢出用省略号显示
+        }
+        .icon {
+            width: 30rpx;
+            height: 30rpx;
+            margin-left: 30rpx;
+        }
+    }
+
+    .box {
+        padding: 140rpx 60rpx 40rpx;
+        .item {
+            padding-bottom: 50rpx;
+            .label {
+                color: #999;
+            }
+            .value {
+                font-size: 32rpx;
+                padding-top: 6rpx;
+            }
+        }
+    }
+}
+
+// 隐藏滚动条
+::-webkit-scrollbar {
+    display: none;
+}

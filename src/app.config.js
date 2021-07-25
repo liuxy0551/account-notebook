@@ -5,7 +5,7 @@ export default {
     'pages/tag/list/index',
     'pages/tag/form/index',
     
-    'pages/account/index',
+    'pages/account/form/index',
     
     'pages/personal/index',
   ],
