@@ -14,11 +14,14 @@ class AccountDetail extends Component {
     }
 
     state = {
-        tagNameList: []
+        tagList: [],
+        tagNameList: [],
+        accountList: []
     }
 
     componentDidMount() {
-        
+        const tagList = Taro.getStorageSync('tagList') || []
+        this.setState({ tagList })
     }
 
     componentDidUpdate(prevProps) {
@@ -30,9 +33,9 @@ class AccountDetail extends Component {
 
     // 获取标签列表
     getTagList = () => {
+        const { tagList } = this.state
         const { account } = this.props
         const { tagIdList } = account
-        const tagList = Taro.getStorageSync('tagList') || []
         const tagNameList = []
         for (let tag of tagList) {
             tagIdList.includes(tag.id) && tagNameList.push(tag.name)
@@ -49,6 +52,7 @@ class AccountDetail extends Component {
 
     // 删除
     deleteAccount = () => {
+        const { accountList: list } = this.state
         const { account, onClose, getAccountList } = this.props
         onClose()
         Taro.showModal({
@@ -58,7 +62,8 @@ class AccountDetail extends Component {
             success: (res) => {
                 const { confirm } = res
                 if (confirm) {
-                    let accountList = Taro.getStorageSync('accountList') || []
+                    let accountList = list.length ? list : (Taro.getStorageSync('accountList') || [])
+                    this.setState({ accountList })
                     accountList.splice(accountList.map(item => item.id).indexOf(account?.id), 1)
                     setStorage('accountList', accountList).then(() => {
                         getAccountList()
