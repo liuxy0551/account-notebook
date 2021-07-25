@@ -4,11 +4,15 @@
     display: flex;
     .account-content {
         flex: 1;
+        overflow: auto;
         .account-box {
             padding: 40rpx;
             .account-item {
                 padding: 40rpx 0;
                 border-bottom: 2rpx #eee solid;
+                &:last-child {
+                    border-bottom: 2rpx transparent solid;
+                }
                 .account-name {
                     max-width: 420rpx;
                     font-size: 30rpx;

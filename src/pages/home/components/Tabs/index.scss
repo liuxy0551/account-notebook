@@ -5,7 +5,7 @@
     border-right: 1rpx rgba(204, 204, 204, 0.452) solid;
     overflow: auto;
     .tag-item {
-        padding: 25rpx 40rpx;
+        padding: 30rpx 40rpx;
         &.active {
             color: #10A25B;
             font-weight: 600;
@@ -17,6 +17,7 @@
             padding-bottom: 50rpx;
         }
         .name {
+            font-size: 32rpx;
             white-space: normal;
             overflow: hidden; // 超出的文本隐藏
             text-overflow: ellipsis;    // 溢出用省略号显示

@@ -4,19 +4,24 @@
     .tag-box {
         padding: 25rpx 40rpx;
         .tag-item {
-            padding: 25rpx 0;
+            padding: 30rpx 0;
+            border-bottom: 2rpx #eee solid;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            &:last-child {
+                border-bottom: 2rpx transparent solid;
+            }
             .tag-name {
                 flex: 1;
+                font-size: 32rpx;
                 overflow: hidden; // 超出的文本隐藏
                 white-space: nowrap;
                 text-overflow: ellipsis; // 溢出用省略号显示
             }
             .icon {
-                width: 30rpx;
-                height: 30rpx;
+                width: 36rpx;
+                height: 36rpx;
                 margin-left: 30rpx;
             }
         }

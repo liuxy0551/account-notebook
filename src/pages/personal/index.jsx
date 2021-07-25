@@ -5,6 +5,7 @@ import { showToast } from '../../utils'
 import TopBar from '../../components/TopBar/index'
 import defaultAvatar from '../../assets/images/default_avatar.png'
 import moreIconUrl from '../../assets/images/more-icon.png'
+import { version } from '../../../package.json'
 
 import './index.scss'
 
@@ -20,7 +21,7 @@ export default class Home extends Component {
     }
 
     componentDidMount() {
-        
+        console.log(`account-notebook v${ version }`)
     }
 
     login = () => {
