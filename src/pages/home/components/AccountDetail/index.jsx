@@ -56,8 +56,7 @@ class AccountDetail extends Component {
             cancelColor: '#333',
             confirmColor: '#ff0333',
             content: `是否删除账号：“${ account?.name }”？`,
-            success: (res) => {
-                const { confirm } = res
+            success: ({ confirm }) => {
                 if (confirm) {
                     let accountList = list.length ? list : (Taro.getStorageSync('accountList') || [])
                     this.setState({ accountList })

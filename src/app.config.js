@@ -7,7 +7,8 @@ export default {
     
     'pages/account/form/index',
     
-    'pages/personal/index',
+    'pages/personal/password/index',
+    'pages/personal/grid/index',
   ],
   window: {
     backgroundTextStyle: 'light',

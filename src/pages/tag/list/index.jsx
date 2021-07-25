@@ -45,8 +45,7 @@ export default class Home extends Component {
             cancelColor: '#333',
             confirmColor: '#ff0333',
             content: `删除后关联此标签的账号在“全部账号”中可见，是否删除此标签？`,
-            success: (res) => {
-                const { confirm } = res
+            success: ({ confirm }) => {
                 if (confirm) {
                     tagList.splice(tagList.map(tag => tag.id).indexOf(item.id), 1)
                     this.setState({ tagList })

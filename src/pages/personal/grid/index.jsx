@@ -1,22 +1,22 @@
 import { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { View, Image, Button } from '@tarojs/components'
-import { showToast } from '../../utils'
-import TopBar from '../../components/TopBar/index'
-import defaultAvatar from '../../assets/images/default_avatar.png'
-import moreIconUrl from '../../assets/images/more-icon.png'
-import { version } from '../../../package.json'
+import { showToast } from '../../../utils'
+import TopBar from '../../../components/TopBar/index'
+import defaultAvatar from '../../../assets/images/default_avatar.png'
+import moreIconUrl from '../../../assets/images/more-icon.png'
+import { version } from '../../../../package.json'
 
 import './index.scss'
 
 export default class Home extends Component {
     state = {
         optionList: [
-            { name: '主密码', url: '/pages/password/index' },
-            { name: '云同步', url: '/pages/cloudSync/index' },
+            { name: '安全密码', url: '/pages/personal/password/index' },
+            { name: '云同步', url: '/pages/personal/cloudSync/index' },
             { name: '设置授权' },
-            { name: '关于', url: '/pages/about/index' },
-            { name: '友情链接', url: '/pages/friend/index' },
+            { name: '关于', url: '/pages/personal/about/index' },
+            { name: '友情链接', url: '/pages/personal/friend/index' },
         ]
     }
 

@@ -1,0 +1,25 @@
+.container {
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .form-box {
+        overflow: auto;
+        .form-item {
+            margin: 60rpx;
+            .label {
+    
+            }
+            .password-input {
+                padding: 20rpx;
+                border-bottom: 2rpx #10a25b solid;
+            }
+            .tag-name {
+                color: #10a25b;
+                padding: 20rpx;
+                border-bottom: 2rpx #10a25b solid;
+            }
+        }
+    }
+}

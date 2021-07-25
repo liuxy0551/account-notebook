@@ -5,7 +5,7 @@ import TopBar from '../../components/TopBar/index'
 import Empty from '../../components/Empty/index'
 import Tabs from './components/Tabs/index'
 import AccountDetail from './components/AccountDetail/index'
-import { initTagList } from '../../utils'
+import { setStorage, showToast, getTime, initTagList } from '../../utils'
 import addBtnUrl from '../../assets/images/add-btn.png'
 
 import './index.scss'
@@ -20,11 +20,37 @@ export default class Home extends Component {
     }
 
     componentDidMount() {
-        
+
     }
 
     componentDidShow() {
+        this.getPasswordInfo()
         this.getTagList()
+    }
+
+    getPasswordInfo = () => {
+        const passwordInfo = Taro.getStorageSync('passwordInfo')
+        if (!passwordInfo?.changed && passwordInfo?.remindDay !== getTime(true)) {
+            setStorage('passwordInfo', {
+                password: '1234',
+                passwordTip: '默认密码 1234',
+                changed: false,
+                remindDay: getTime(true)
+            })
+
+            Taro.showModal({
+                title: '安全密码',
+                cancelColor: '#999',
+                cancelText: '知道了',
+                confirmText: '去修改',
+                content: `欢迎使用“记账簿”，默认安全密码 1234，请及时修改！`,
+                success: ({ confirm }) => {
+                    if (confirm) {
+                        Taro.navigateTo({ url: `/pages/personal/password/index` })
+                    }
+                }
+            })
+        }
     }
 
     // 获取标签列表

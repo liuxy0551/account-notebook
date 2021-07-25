@@ -28,7 +28,7 @@ class TopBar extends Component {
     // 点击左上角图片
     handleLeftImg = () => {
         const { showAvatar } = this.props
-        showAvatar ? Taro.navigateTo({ url: `/pages/personal/index` }) : Taro.navigateBack()
+        showAvatar ? Taro.navigateTo({ url: `/pages/personal/grid/index` }) : Taro.navigateBack()
     }
   
     render() {
