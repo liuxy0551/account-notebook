@@ -1,6 +1,7 @@
 import Taro from '@tarojs/taro'
 import { getUuid, initTagList } from './initData'
 import { setStorage } from './updateData'
+import { getUpdateInfo } from './system'
 
 // 获取当前时间
 const getTime = (isDay = false) => {
@@ -53,6 +54,7 @@ export {
     showToast,
     setStorage,
     getTime,
+    getUpdateInfo,
     getTopBarHeight,
     initTagList,
 }
