@@ -1,11 +1,10 @@
 import { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { View, Image, Button } from '@tarojs/components'
-import { showToast } from '../../../utils'
+import { showToast, getUserInfo } from '../../../utils'
 import TopBar from '../../../components/TopBar/index'
 import defaultAvatar from '../../../assets/images/default_avatar.png'
 import moreIconUrl from '../../../assets/images/more-icon.png'
-import { version } from '../../../../package.json'
 
 import './index.scss'
 
@@ -21,11 +20,28 @@ export default class Home extends Component {
     }
 
     componentDidMount() {
-        console.log(`account-notebook v${ version }`)
+        this.login()
+
+        Taro.getSetting({
+            success: (res) => {
+                if (res.authSetting['scope.userInfo']) {
+                    Taro.getUserInfo({
+                        success: (result) => {
+                            getUserInfo(result)
+                        }
+                    })
+                }
+            }
+        })
     }
 
     login = () => {
-        
+        Taro.login({
+            success: (res) => {
+                if (!res.code) return console.log('登录失败！' + res.errMsg)
+                console.log(111, res.code)
+            }
+        })
     }
 
     // 跳转页面
@@ -61,7 +77,10 @@ export default class Home extends Component {
                                         <View className='title'>{ item.name }</View>
                                         <Image className='more-icon' src={moreIconUrl} />
                                         {
-                                            item.name === '设置授权' && <Button className='open-setting' open-type='openSetting' bindopensetting='openSetting'>授权</Button>
+                                            item.name === '设置授权' && <Button className='open-setting' open-type='openSetting' onOpenSetting={this.openSetting}>授权</Button>
+                                        }
+                                        {
+                                            // item.name === '云同步' && <Button className='login-btn' open-type='getUserInfo' onGetUserInfo={(e) => { getUserInfo(e?.detail) }}>授权</Button>
                                         }
                                     </View>
                                 )
