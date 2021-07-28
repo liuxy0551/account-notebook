@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import Taro from '@tarojs/taro'
-import { View, Input, Button } from '@tarojs/components'
+import { View, Text, Input, Button } from '@tarojs/components'
 import { showToast } from '../../../utils'
 import TopBar from '../../../components/TopBar/index'
 
@@ -28,6 +28,33 @@ export default class Home extends Component {
             showContent: true
         }, () => {
             Taro.hideLoading()
+        })
+    }
+
+    forgetPassword = () => {
+        Taro.showModal({
+            cancelColor: '#333',
+            confirmColor: '#ff0333',
+            confirmText: '清除',
+            content: `忘记安全密码只能通过清除所有用户数据进行重置，这将导致保存在本地的账号信息丢失，请谨慎操作！默认安全密码 1234`,
+            success: ({ confirm }) => {
+                if (confirm) {
+                    Taro.showModal({
+                        cancelColor: '#333',
+                        confirmColor: '#999',
+                        content: `真的要清除所有用户数据吗？`,
+                        success: ({ confirm: removeConfirm }) => {
+                            if (removeConfirm) {
+                                Taro.clearStorage(({
+                                    success: () => {
+                                        Taro.redirectTo({ url: '/pages/home/index' })
+                                    }
+                                }))
+                            }
+                        }
+                    })
+                }
+            }
         })
     }
 
@@ -72,6 +99,7 @@ export default class Home extends Component {
                             </View>
                             <View className='tip'>
                                 安全密码建议 4 至 8 位数字，每次打开账号簿都需要输入安全密码，请牢记！
+                                <Text className='forget-password' onClick={this.forgetPassword}>忘记安全密码？</Text>
                             </View>
                         </View>
 
