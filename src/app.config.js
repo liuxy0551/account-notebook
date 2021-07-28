@@ -12,6 +12,7 @@ export default {
     'pages/personal/grid/index',
     'pages/personal/password/index',
     'pages/personal/about/index',
+    'pages/personal/changelog/index',
   ],
   window: {
     backgroundTextStyle: 'light',

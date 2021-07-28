@@ -1,5 +1,6 @@
 import { Component } from 'react'
-import { View, Image } from '@tarojs/components'
+import Taro from '@tarojs/taro'
+import { View, Image, Text } from '@tarojs/components'
 import TopBar from '../../../components/TopBar/index'
 import shareImgUrl from '../../../assets/images/share.jpg'
 import wechatQrcodeUrl from '../../../assets/images/wechat-qrcode.png'
@@ -10,6 +11,11 @@ import './index.scss'
 export default class Home extends Component {
     componentDidMount() {
 
+    }
+
+    // 跳转页面
+    goPage = () => {
+        Taro.navigateTo({ url: `/pages/personal/changelog/index` })
     }
 
     render() {
@@ -26,7 +32,10 @@ export default class Home extends Component {
 
                     <View className='row-box'>
                         <View className='row-title'>关于『账号簿』</View>
-                        <View className='row-text back'>记录账号密码，数据加密后存储在本地，不自动上传服务器。删除小程序或其他涉及微信存储的操作，会使数据丢失，提供云同步功能。</View>
+                        <View className='row-text back'>
+                            记录账号密码，数据加密后存储在本地，不自动上传服务器。删除小程序或其他涉及微信存储的操作，会使数据丢失，提供云同步功能。
+                            <Text className='change-log' onClick={this.goPage}>更新日志</Text>
+                        </View>
                     </View>
 
                     <View className='row-box center'>

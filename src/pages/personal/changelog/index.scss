@@ -1,0 +1,23 @@
+.log-container {
+    flex: 1;
+    overflow: auto;
+    .log-box {
+        padding: 40rpx;
+        .log-item {
+            padding: 0 0 50rpx;
+            .version {
+                font-size: 32rpx;
+                font-weight: 600;
+            }
+            .time {
+                color: #888;
+                padding: 6rpx 0 20rpx;
+            }
+            .point-box {
+                .point-item {
+
+                }
+            }
+        }
+    }
+}
