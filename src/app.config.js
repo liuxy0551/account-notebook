@@ -1,5 +1,7 @@
 export default {
   pages: [
+    'pages/personal/unlock/index',
+    
     'pages/home/index',
     
     'pages/tag/list/index',
