@@ -37,6 +37,10 @@
     padding: 40rpx 0;
     background-color: #fff;
     box-shadow: 0 -16px 16px 0 rgba(0,0,0,0.1);
+    &.padding {
+        padding-top: 80rpx;
+        box-shadow: none;
+    }
     .save-btn {
         color: #fff;
         width: 550rpx;
