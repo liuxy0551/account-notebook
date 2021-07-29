@@ -1,6 +1,6 @@
 // 初始化数据
 import { setStorage } from './updateData'
-import { getTime } from './index'
+import { getTimeStr } from './index'
 
 // 获取单个 uuid v4
 const getUuid = () => {
@@ -47,7 +47,7 @@ const initAccount = async (tagId1, tagId2) => {
             password: 'Aa123456',
             note: '这是一个社交示例账号',
             tagIdList: [tagId1],
-            time: getTime()
+            time: getTimeStr()
         },
         {
             id: getUuid(),
@@ -56,7 +56,7 @@ const initAccount = async (tagId1, tagId2) => {
             password: '123456',
             note: '这是一个购物示例账号',
             tagIdList: [tagId2],
-            time: getTime()
+            time: getTimeStr()
         }
     ]
     await setStorage('accountList', accountList)

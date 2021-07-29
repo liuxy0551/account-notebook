@@ -46,13 +46,12 @@ export default class Home extends Component {
             confirmColor: '#ff0333',
             content: `删除后关联此标签的账号在“全部账号”中可见，是否删除此标签？`,
             success: ({ confirm }) => {
-                if (confirm) {
-                    tagList.splice(tagList.map(tag => tag.id).indexOf(item.id), 1)
-                    this.setState({ tagList })
-                    setStorage('tagList', tagList).then(() => {
-                        showToast('删除成功')
-                    })
-                }
+                if (!confirm) return
+                tagList.splice(tagList.map(tag => tag.id).indexOf(item.id), 1)
+                this.setState({ tagList })
+                setStorage('tagList', tagList).then(() => {
+                    showToast('删除成功')
+                })
             }
         })
     }

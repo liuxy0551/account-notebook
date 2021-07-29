@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { View, Input, Button } from '@tarojs/components'
-import { showToast, setStorage, getTime } from '../../../utils'
+import { showToast, setStorage, getTimeStr } from '../../../utils'
 import TopBar from '../../../components/TopBar/index'
 
 export default class Home extends Component {
@@ -74,11 +74,11 @@ export default class Home extends Component {
         
         this.setState({ loading: true })
         Taro.showModal({
-            cancelColor: '#333',
+            cancelColor: '#999',
             content: `每次打开账号簿都需要输入安全密码，务必牢记！`,
             success: ({ confirm, cancel }) => {
                 if (confirm) {
-                    const info = { password, passwordTip, changed: true, remindDay: getTime(true) }
+                    const info = { password, passwordTip, changed: true, remindDay: getTimeStr(true) }
                     setStorage('passwordInfo', info).then(() => {
                         showToast('保存成功').then(() => {
                             this.setState({ loading: false })

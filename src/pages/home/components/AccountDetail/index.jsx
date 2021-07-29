@@ -57,15 +57,14 @@ class AccountDetail extends Component {
             confirmColor: '#ff0333',
             content: `是否删除账号：“${ account?.name }”？`,
             success: ({ confirm }) => {
-                if (confirm) {
-                    let accountList = list.length ? list : (Taro.getStorageSync('accountList') || [])
-                    this.setState({ accountList })
-                    accountList.splice(accountList.map(item => item.id).indexOf(account?.id), 1)
-                    setStorage('accountList', accountList).then(() => {
-                        getAccountList()
-                        showToast('删除成功')
-                    })
-                }
+                if (!confirm) return
+                let accountList = list.length ? list : (Taro.getStorageSync('accountList') || [])
+                this.setState({ accountList })
+                accountList.splice(accountList.map(item => item.id).indexOf(account?.id), 1)
+                setStorage('accountList', accountList).then(() => {
+                    getAccountList()
+                    showToast('删除成功')
+                })
             }
         })
     }

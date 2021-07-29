@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { View, Input, Button, Image } from '@tarojs/components'
-import { getUuid, showToast, setStorage, getTime } from '../../../utils'
+import { getUuid, showToast, setStorage, getTimeStr } from '../../../utils'
 import TopBar from '../../../components/TopBar/index'
 import TagList from '../components/TagList'
 import passwordIconUrl from '../../../assets/images/password-icon.png'
@@ -97,7 +97,7 @@ export default class Home extends Component {
     save = () => {
         const { accountId, name, username, password, note, tagList } = this.state
         let { accountList } = this.state
-        const time = getTime()
+        const time = getTimeStr()
         if (!name) {
             showToast('请输入账号名称')
             return this.setState({ nameFocus: true })

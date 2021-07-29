@@ -2,10 +2,10 @@ import Taro from '@tarojs/taro'
 import { getUuid, initTagList } from './initData'
 import { setStorage } from './updateData'
 import { getUserInfo } from './user'
-import { getUpdateInfo } from './system'
+import { getFingerPrintSupport, startSoterAuthentication, getUpdateInfo } from './system'
 
 // 获取当前时间
-const getTime = (isDay = false) => {
+const getTimeStr = (isDay = false) => {
     const date = new Date()
     const year = date.getFullYear() // 年
     let month = date.getMonth() + 1 // 月
@@ -54,8 +54,10 @@ export {
     getUuid,
     showToast,
     setStorage,
-    getTime,
+    getTimeStr,
     getUserInfo,
+    getFingerPrintSupport,
+    startSoterAuthentication,
     getUpdateInfo,
     getTopBarHeight,
     initTagList,

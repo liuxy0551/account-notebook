@@ -3,6 +3,55 @@
  * 获取小程序更新信息
  */
 import Taro from '@tarojs/taro'
+import { getTimeStr, setStorage } from './index'
+
+// 获取本机支持的 SOTER 生物认证方式 - 仅查询是否支持指纹识别
+const getFingerPrintSupport = () => {
+    return new Promise((resolve) => {
+        const fingerPrintSupport = Taro.getStorageSync('fingerPrintSupport') || false
+        if (fingerPrintSupport) return resolve(fingerPrintSupport)
+        Taro.checkIsSupportSoterAuthentication({
+            success: (res) => {
+                if (!res?.supportMode.includes('fingerPrint')) return
+                Taro.checkIsSoterEnrolledInDevice({
+                    checkAuthMode: 'fingerPrint',
+                    success: (result) => {
+                        setStorage('fingerPrintSupport', result.isEnrolled)
+                        resolve(result.isEnrolled)
+                    },
+                    fail: (err) => {
+                        console.log('checkIsSoterEnrolledInDevice', err)
+                        setStorage('fingerPrintSupport', false)
+                        resolve(false)
+                    }
+                })
+            },
+            fail: (err) => {
+                console.log('checkIsSupportSoterAuthentication', err)
+                setStorage('fingerPrintSupport', false)
+                resolve(false)
+            }
+        })
+    })
+}
+
+// 开始 SOTER 生物认证
+const startSoterAuthentication = () => {
+    return new Promise((resolve) => {
+        Taro.startSoterAuthentication({
+            requestAuthModes: ['fingerPrint'],
+            challenge: getTimeStr(),
+            authContent: '请用指纹解锁',
+            success: (res) => {
+                resolve(res)
+            },
+            fail: (err) => {
+                console.log('startSoterAuthentication', err)
+                resolve(err)
+            }
+        })
+    })
+}
 
 // 检测小程序更新
 const getUpdateInfo = () => {
@@ -17,10 +66,10 @@ const getUpdateInfo = () => {
             Taro.showModal({
                 title: '更新提示',
                 content: '新版本已经准备好，是否重启应用？',
-                success: (result) => {
+                success: ({ confirm }) => {
                     // console.log('success====', result)
                     // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
-                    result.confirm && updateManager.applyUpdate()
+                    confirm && updateManager.applyUpdate()
                 }
             })
         })
@@ -35,5 +84,7 @@ const getUpdateInfo = () => {
 }
 
 export {
+    getFingerPrintSupport,
+    startSoterAuthentication,
     getUpdateInfo
 }

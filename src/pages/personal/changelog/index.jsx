@@ -8,6 +8,13 @@ export default class Home extends Component {
     state = {
         logList: [
             {
+                version: 'v1.2.0',
+                time: '2021-07-29 23:07',
+                pointList: [
+                    '进入小程序可以使用指纹解锁啦~'
+                ]
+            },
+            {
                 version: 'v1.1.0',
                 time: '2021-07-28 22:40',
                 pointList: [

@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { View, Text, Input, Button } from '@tarojs/components'
-import { showToast } from '../../../utils'
+import { showToast, getFingerPrintSupport, startSoterAuthentication } from '../../../utils'
 import TopBar from '../../../components/TopBar/index'
 
 export default class Home extends Component {
@@ -10,7 +10,7 @@ export default class Home extends Component {
         showContent: false,
         passwordInfo: null,
         password: '',
-        passwordFocus: true
+        passwordFocus: false
     }
 
     componentDidMount() {
@@ -28,6 +28,37 @@ export default class Home extends Component {
             showContent: true
         }, () => {
             Taro.hideLoading()
+            this.startFingerPrint()
+        })
+    }
+
+    // 开始指纹识别
+    startFingerPrint = async () => {
+        const fingerPrintSupport = await getFingerPrintSupport()
+        if (!fingerPrintSupport) return this.setState({ passwordFocus: true })
+
+        const result = await startSoterAuthentication()
+        if (result?.errMsg?.includes('cancel') && result?.errCode === 90008) return showToast('用户取消指纹解锁').then(() => {
+            this.setState({ passwordFocus: true })
+        })
+        if (result?.errMsg?.includes('later') && result?.errCode === 90010) return showToast('指纹解锁失败，请稍后再试')
+        if (result?.errMsg?.includes('ok') && result?.errCode === 0) return Taro.redirectTo({ url: '/pages/home/index' })
+    }
+
+    // 打开帮助弹框
+    showHelpModal = () => {
+        const { passwordInfo } = this.state
+        Taro.showModal({
+            title: '密码提示',
+            cancelColor: '#999',
+            cancelText: '忘记密码',
+            confirmColor: '#333',
+            content: `${ passwordInfo?.passwordTip }`,
+            confirmText: '知道了',
+            success: ({ confirm, cancel }) => {
+                confirm && this.setState({ passwordFocus: true })
+                cancel && this.forgetPassword()
+            }
         })
     }
 
@@ -38,22 +69,18 @@ export default class Home extends Component {
             confirmText: '清除',
             content: `忘记安全密码只能通过清除所有用户数据进行重置，这将导致保存在本地的账号信息丢失，请谨慎操作！默认安全密码 1234`,
             success: ({ confirm }) => {
-                if (confirm) {
-                    Taro.showModal({
-                        cancelColor: '#333',
-                        confirmColor: '#999',
-                        content: `真的要清除所有用户数据吗？`,
-                        success: ({ confirm: removeConfirm }) => {
-                            if (removeConfirm) {
-                                Taro.clearStorage(({
-                                    success: () => {
-                                        Taro.redirectTo({ url: '/pages/home/index' })
-                                    }
-                                }))
+                confirm && Taro.showModal({
+                    cancelColor: '#333',
+                    confirmColor: '#999',
+                    content: `真的要清除所有用户数据吗？`,
+                    success: ({ confirm: removeConfirm }) => {
+                        removeConfirm && Taro.clearStorage({
+                            success: () => {
+                                Taro.redirectTo({ url: '/pages/home/index' })
                             }
-                        }
-                    })
-                }
+                        })
+                    }
+                })
             }
         })
     }
@@ -88,23 +115,23 @@ export default class Home extends Component {
 
         return (
             <View className='full-page'>
-                <TopBar title={title} />
+                <TopBar title={title} showBack={false} />
 
                 {
                     showContent && <View className='password-container'>
                         <View className='form-box'>
-                        <View className='form-item'>
-                            <View className='label'>当前安全密码</View>
+                            <View className='form-item'>
+                                <View className='label'>当前安全密码</View>
                                 <Input className='password-input' type='number' password value={password} onInput={this.handlePasswordChange} placeholder='请输入当前安全密码' maxlength={8} focus={passwordFocus} onBlur={() => { this.setState({ passwordFocus: false }) }} />
                             </View>
-                            <View className='tip'>
-                                安全密码建议 4 至 8 位数字，每次打开账号簿都需要输入安全密码，请牢记！
-                                <Text className='forget-password' onClick={this.forgetPassword}>忘记安全密码？</Text>
+                            <View className='help-box'>
+                                <Text onClick={this.startFingerPrint}>指纹解锁</Text>
+                                <Text onClick={this.showHelpModal}>帮助？</Text>
                             </View>
                         </View>
 
                         <View className='bottom-box padding'>
-                            <Button className='save-btn' onClick={this.save}>保 存</Button>
+                            <Button className='save-btn' onClick={this.save}>确 定</Button>
                         </View>
                     </View>
                 }
