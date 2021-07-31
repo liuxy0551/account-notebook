@@ -3,7 +3,7 @@ import Taro from '@tarojs/taro'
 import { View, Image, Button, Switch } from '@tarojs/components'
 import TopBar from '../../../components/TopBar/index'
 import { setStorage, previewImage } from '../../../utils'
-import { setBackupData } from '../../../utils/cloudSync'
+import { setBackupData, setDownloadData } from '../../../utils/cloudSync'
 import cloudIconUrl from '../../../assets/images/cloud-icon.png'
 import moreIconUrl from '../../../assets/images/more-icon.png'
 
@@ -61,9 +61,7 @@ export default class Home extends Component {
             confirmText: '开始备份',
             content: `备份操作会覆盖云端内容，是否立即备份？`,
             success: ({ confirm }) => {
-                if (confirm) {
-                    setBackupData()
-                }
+                confirm && setBackupData()
             }
         })
     }
@@ -71,19 +69,9 @@ export default class Home extends Component {
     // 下载按钮
     handleDownload = () => {
         Taro.showActionSheet({
-            itemList: ['和本地数据合并', '清除本地数据再下载备份'],
+            itemList: ['以本地数据为主合并', '以云端数据为主合并', '清除本地数据再下载备份'],
             success: (res) => {
-                switch (res.tapIndex) {
-                    case 0:
-                        // const { tagList, accountList } = setBackupData()
-                        // console.log(111111, tagList, accountList)
-                        break
-                    case 1:
-                        
-                        break
-                    default:
-                        break
-                }
+                setDownloadData(res.tapIndex)
             }
         })
     }
@@ -108,7 +96,7 @@ export default class Home extends Component {
                             <View className='row-box'>
                                 <View className='row-item'>
                                     <View className='name'>自动同步</View>
-                                    <Switch className='sync-switch' checked={autoSync} onChange={this.autoSyncChange} />
+                                    <Switch className='sync-switch' checked={autoSync} disabled onChange={this.autoSyncChange} />
                                 </View>
                                 {/* <View className='row-item'>
                                     <View className='name'>备份下载</View>

@@ -47,7 +47,8 @@ const initAccount = async (tagId1, tagId2) => {
             password: 'Aa123456',
             note: '这是一个社交示例账号',
             tagIdList: [tagId1],
-            time: getTimeStr()
+            time: getTimeStr(),
+            encrypted: false
         },
         {
             id: getUuid(),
@@ -56,7 +57,8 @@ const initAccount = async (tagId1, tagId2) => {
             password: '123456',
             note: '这是一个购物示例账号',
             tagIdList: [tagId2],
-            time: getTimeStr()
+            time: getTimeStr(),
+            encrypted: false
         }
     ]
     await setStorage('accountList', accountList)

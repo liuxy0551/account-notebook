@@ -120,7 +120,8 @@ export default class Home extends Component {
             password,
             note,
             tagIdList,
-            time
+            time,
+            encrypted: false
         }
         if (accountId) {
             accountList = accountList.map(item => {
