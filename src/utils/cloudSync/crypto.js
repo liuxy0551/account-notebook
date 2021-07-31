@@ -1,3 +1,9 @@
+
+/**
+ * 加密过程：先对账号和密码进行 AES 加密，再进行 BASE64 编码
+ * 解密过程：与加密过程相反
+ */
+
 import CryptoJS from './lib/CryptoJS'
 
 const key = CryptoJS.enc.Utf8.parse('0102030405060807') // 十六位十六进制数作为秘钥

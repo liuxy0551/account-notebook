@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { View, Image, Button } from '@tarojs/components'
-import { getUserProfile } from '../../../utils'
+import { cloudInit, getUserProfile } from '../../../utils'
 import TopBar from '../../../components/TopBar/index'
 import defaultAvatar from '../../../assets/images/default_avatar.png'
 import moreIconUrl from '../../../assets/images/more-icon.png'
@@ -21,6 +21,7 @@ export default class Home extends Component {
     }
 
     componentDidMount() {
+        cloudInit()
         this.getUserInfo()
     }
 

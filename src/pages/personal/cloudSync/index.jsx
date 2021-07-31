@@ -3,7 +3,7 @@ import Taro from '@tarojs/taro'
 import { View, Image, Button, Switch } from '@tarojs/components'
 import TopBar from '../../../components/TopBar/index'
 import { setStorage, previewImage } from '../../../utils'
-import { getBackupData } from '../../../utils/cloudSync'
+import { setBackupData } from '../../../utils/cloudSync'
 import cloudIconUrl from '../../../assets/images/cloud-icon.png'
 import moreIconUrl from '../../../assets/images/more-icon.png'
 
@@ -62,7 +62,7 @@ export default class Home extends Component {
             content: `备份操作会覆盖云端内容，是否立即备份？`,
             success: ({ confirm }) => {
                 if (confirm) {
-                    getBackupData()
+                    setBackupData()
                 }
             }
         })
@@ -75,8 +75,8 @@ export default class Home extends Component {
             success: (res) => {
                 switch (res.tapIndex) {
                     case 0:
-                        const { tagList, accountList } = getBackupData()
-                        console.log(111111, tagList, accountList)
+                        // const { tagList, accountList } = setBackupData()
+                        // console.log(111111, tagList, accountList)
                         break
                     case 1:
                         
