@@ -43,14 +43,14 @@ class TopBar extends Component {
         const backIconStyle = {
             width: `${ menuHeight + 6 }rpx`,
             height: `${ menuHeight + 6 }rpx`,
-            paddingLeft: '10rpx'
+            padding: '10rpx'
         }
         let leftStyle = showAvatar ? avatarStyle : backIconStyle
         let leftSrc = showAvatar ? defaultAvatar : (showBack ? backIconUrl : '')
 
         return (
             <View className='top-bar' style={{ padding: `${ menuTop }Px 20rpx 8Px` }}>
-                <Image className='avatar' style={leftStyle} src={leftSrc} onClick={this.handleLeftImg} />
+                <Image className='left-icon' style={leftStyle} src={leftSrc} onClick={this.handleLeftImg} />
                 <View className='title'>{ title }</View>
                 <View style={avatarStyle}></View>
             </View>

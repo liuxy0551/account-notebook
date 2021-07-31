@@ -24,8 +24,8 @@ export default class Home extends Component {
     }
 
     componentDidShow() {
-        this.getPasswordInfo()
         this.getTagList()
+        this.getPasswordInfo()
     }
 
     getPasswordInfo = () => {

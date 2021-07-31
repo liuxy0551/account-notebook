@@ -71,10 +71,10 @@ export default class Home extends Component {
                                     <View className='tag-item' key={item.id}>
                                         <View className='tag-name'>{ item.name }</View>
                                         {
-                                            item.id !== 'all' && <Image className='icon' src={editIconUrl} onClick={() => this.editTag(item)} />
+                                            item.id !== 'all' && <Image className='icon' src={deleteIconUrl} onClick={() => this.deleteTag(item)} />
                                         }
                                         {
-                                            item.id !== 'all' && <Image className='icon' src={deleteIconUrl} onClick={() => this.deleteTag(item)} />
+                                            item.id !== 'all' && <Image className='icon' src={editIconUrl} onClick={() => this.editTag(item)} />
                                         }
                                     </View>
                                 )
