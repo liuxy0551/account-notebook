@@ -1,5 +1,6 @@
 export default {
   pages: [
+    'pages/personal/cloudSync/index',
     'pages/personal/unlock/index',
     
     'pages/home/index',

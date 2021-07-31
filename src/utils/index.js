@@ -1,8 +1,8 @@
 import Taro from '@tarojs/taro'
 import { getUuid, initTagList } from './initData'
+import { getFingerPrintSupport, startSoterAuthentication, cloudInit, getUpdateInfo } from './system'
 import { setStorage } from './updateData'
 import { getUserProfile } from './user'
-import { getFingerPrintSupport, startSoterAuthentication, cloudInit, getUpdateInfo } from './system'
 
 // 获取当前时间
 const getTimeStr = (isDay = false) => {
@@ -50,9 +50,20 @@ const showToast = (title, duration = 1500) => {
     })
 }
 
+// 预览图片
+const previewImage = (urls = [], current) => {
+    if (!urls.length) return
+    if (!current) current = urls[0]
+    Taro.previewImage({
+        urls,
+        current
+    })
+}
+
 export {
     getUuid,
     showToast,
+    previewImage,
     setStorage,
     getTimeStr,
     getUserProfile,

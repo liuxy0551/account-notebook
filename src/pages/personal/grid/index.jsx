@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { View, Image, Button } from '@tarojs/components'
-import { setStorage, showToast, getUserProfile } from '../../../utils'
+import { getUserProfile } from '../../../utils'
 import TopBar from '../../../components/TopBar/index'
 import defaultAvatar from '../../../assets/images/default_avatar.png'
 import moreIconUrl from '../../../assets/images/more-icon.png'
@@ -35,7 +35,9 @@ export default class Home extends Component {
         if (!url) return
         if (userInfo) return Taro.navigateTo({ url })
         getUserProfile().then((res) => {
-            this.setState({ userInfo: res })
+            this.setState({ userInfo: res }, () => {
+                Taro.navigateTo({ url })
+            })
         })
     }
 
