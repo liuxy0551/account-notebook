@@ -53,6 +53,14 @@ const startSoterAuthentication = () => {
     })
 }
 
+// 云开发初始化
+const cloudInit = () => {
+    Taro.cloud.init({
+        env: 'prod-3g3ayg0q48089ea7',
+        traceUser: true
+    })
+}
+
 // 检测小程序更新
 const getUpdateInfo = () => {
     if (!Taro.canIUse('getUpdateManager')) return
@@ -86,5 +94,6 @@ const getUpdateInfo = () => {
 export {
     getFingerPrintSupport,
     startSoterAuthentication,
+    cloudInit,
     getUpdateInfo
 }

@@ -15,15 +15,23 @@ class TopBar extends Component {
     }
     state = {
         menuTop: 0,
-        menuHeight: 0
+        menuHeight: 0,
+        userInfo: null
     }
 
     componentDidMount() {
+        const { showAvatar } = this.props
+        showAvatar && this.getUserInfo()
         const { menuTop, menuHeight } = getTopBarHeight()
         this.setState({
             menuTop,
             menuHeight
         })
+    }
+
+    getUserInfo = () => {
+        const userInfo = Taro.getStorageSync('userInfo') || null
+        this.setState({ userInfo })
     }
 
     // 点击左上角图片
@@ -35,7 +43,7 @@ class TopBar extends Component {
   
     render() {
         const { showAvatar, showBack, title } = this.props
-        const { menuTop, menuHeight } = this.state
+        const { menuTop, menuHeight, userInfo } = this.state
         const avatarStyle = {
             width: `${ menuHeight }Px`,
             height: `${ menuHeight }Px`
@@ -46,7 +54,7 @@ class TopBar extends Component {
             padding: '10rpx'
         }
         let leftStyle = showAvatar ? avatarStyle : backIconStyle
-        let leftSrc = showAvatar ? defaultAvatar : (showBack ? backIconUrl : '')
+        let leftSrc = showAvatar ? (userInfo?.avatarUrl || defaultAvatar) : (showBack ? backIconUrl : '')
 
         return (
             <View className='top-bar' style={{ padding: `${ menuTop }Px 20rpx 8Px` }}>

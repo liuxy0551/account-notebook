@@ -1,9 +1,10 @@
 import { Component } from 'react'
-import { getUpdateInfo } from './utils'
+import { cloudInit, getUpdateInfo } from './utils'
 import './app.scss'
 
 class App extends Component {
     componentDidMount() {
+        cloudInit()
         getUpdateInfo()
     }
 

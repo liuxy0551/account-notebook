@@ -1,8 +1,8 @@
 import Taro from '@tarojs/taro'
 import { getUuid, initTagList } from './initData'
 import { setStorage } from './updateData'
-import { getUserInfo } from './user'
-import { getFingerPrintSupport, startSoterAuthentication, getUpdateInfo } from './system'
+import { getUserProfile } from './user'
+import { getFingerPrintSupport, startSoterAuthentication, cloudInit, getUpdateInfo } from './system'
 
 // 获取当前时间
 const getTimeStr = (isDay = false) => {
@@ -55,9 +55,10 @@ export {
     showToast,
     setStorage,
     getTimeStr,
-    getUserInfo,
+    getUserProfile,
     getFingerPrintSupport,
     startSoterAuthentication,
+    cloudInit,
     getUpdateInfo,
     getTopBarHeight,
     initTagList,

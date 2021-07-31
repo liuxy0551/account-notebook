@@ -2,6 +2,7 @@
   "miniprogramRoot": "dist/",
   "projectname": "account-notebook-wechat",
   "description": "",
+  "cloudfunctionRoot": "cloud",
   "appid": "wx416dfa2165b3e4c0",
   "setting": {
     "urlCheck": true,
