@@ -1,10 +1,26 @@
-### 账号簿 | <a href="src/components/ChangeLog/index.jsx#L9" target="_black">CHANGELOG</a>
+## 账号簿 | <a href="src/components/ChangeLog/index.jsx#L9" target="_black">CHANGELOG</a>
 
+
+### 实现效果
 
 #### 微信扫码体验
 
 ![](https://liuxy0551.gitee.io/image-hosting/posts/account-notebook/share.jpg)
 
+
+#### 小程序截图
+
+![](https://liuxy0551.gitee.io/image-hosting/posts/account-notebook/1.png)
+
+
+#### 云端数据截图
+
+&emsp;&emsp; 账号密码均为加密后的密文，无法查看明文
+
+![](https://liuxy0551.gitee.io/image-hosting/posts/account-notebook/2.png)
+
+
+### 相关说明
 
 #### 使用说明
 
@@ -12,6 +28,7 @@
 - 清除微信数据或微信缓存以及删除小程序都会丢失本地数据，建议进行这些操作前使用**云同步**功能备份账号密码。
 - 开发『账号簿』的目的是方便个人密码的保存和查看，是为了保存个人账号密码而开发的，分享给有需要的人使用。
 - 如遇到问题或二次开发的，请联系开发者。邮箱：<a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=MFxZRUhJAAUFAXBBQR5TX10" target="_black">liuxy0551@qq.com</a>
+- 开发者尽最大可能保障数据安全，但不承担任何责任。
 
 
 #### 用途说明
@@ -67,7 +84,7 @@ account-notebook
 |  |   └─images  图片资源
 ├─config  配置文件
 └─cloud  云开发
-    └─getOpenId  云函数
+   └─getOpenId  云函数
 ```
 
 
@@ -80,7 +97,7 @@ yarn
 yarn dev:weapp
 ```
 
-&emsp;&emsp;在微信开发者工具导入整个项目路径即可查看效果。
+&emsp;&emsp;在微信开发者工具导入项目即可查看效果。
 
 ### 相关随笔
 
