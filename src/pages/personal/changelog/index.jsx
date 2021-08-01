@@ -8,6 +8,14 @@ export default class Home extends Component {
     state = {
         logList: [
             {
+                version: 'v1.3.1',
+                time: '2021-08-01 13:49',
+                pointList: [
+                    '修复 更新后进入小程序跳到更新日志页面但提示指纹解锁',
+                    '点击“关于”页面中的版本号，可检查更新'
+                ]
+            },
+            {
                 version: 'v1.3.0',
                 time: '2021-08-01 12:39',
                 pointList: [

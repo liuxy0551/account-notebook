@@ -16,16 +16,15 @@ export default class Home extends Component {
         useFingerPrint: true
     }
 
-    componentDidMount() {
+    componentDidShow() {
         Taro.showLoading({ title: '加载中...' })
         this.getIsUpdatedFirst()
-        this.getFingerPrint()
     }
 
     // 是否更新后第一次进入小程序
     getIsUpdatedFirst = () => {
         const isUpdatedFirst = Taro.getStorageSync('version') !== version
-        if (!isUpdatedFirst) return
+        if (!isUpdatedFirst) return this.getFingerPrint()
         setStorage('version', version)
         Taro.navigateTo({ url: `/pages/personal/changelog/index` })
     }

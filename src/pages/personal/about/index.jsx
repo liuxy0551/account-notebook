@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
+import { getUpdateInfo } from '../../../utils'
 import TopBar from '../../../components/TopBar/index'
 import shareImgUrl from '../../../assets/images/share.jpg'
 import wechatQrcodeUrl from '../../../assets/images/wechat-qrcode.png'
@@ -11,6 +12,10 @@ import './index.scss'
 export default class Home extends Component {
     componentDidMount() {
 
+    }
+
+    getUpdate = () => {
+        getUpdateInfo(true)
     }
 
     // 跳转页面
@@ -27,7 +32,7 @@ export default class Home extends Component {
                     <View className='row-box logo'>
                         <Image className='logo-img' src={shareImgUrl} />
                         <View className='logo-title'>账号簿</View>
-                        <View className='gray-text'>v{ version }</View>
+                        <View className='gray-text' onClick={this.getUpdate}>v{ version }</View>
                     </View>
 
                     <View className='row-box'>
