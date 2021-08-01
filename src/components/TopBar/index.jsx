@@ -11,17 +11,15 @@ class TopBar extends Component {
     static defaultProps = {
         showAvatar: false,
         showBack: true,
-        title: '账号簿'
+        title: '账号簿',
+        userInfo: null
     }
     state = {
         menuTop: 0,
-        menuHeight: 0,
-        userInfo: null
+        menuHeight: 0
     }
 
     componentDidMount() {
-        const { showAvatar } = this.props
-        showAvatar && this.getUserInfo()
         const { menuTop, menuHeight } = getTopBarHeight()
         this.setState({
             menuTop,
@@ -29,21 +27,15 @@ class TopBar extends Component {
         })
     }
 
-    getUserInfo = () => {
-        const userInfo = Taro.getStorageSync('userInfo') || null
-        this.setState({ userInfo })
-    }
-
     // 点击左上角图片
     handleLeftImg = () => {
         const { showAvatar, showBack } = this.props
-        if (!showBack) return
-        showAvatar ? Taro.navigateTo({ url: `/pages/personal/grid/index` }) : Taro.navigateBack()
+        showAvatar ? Taro.navigateTo({ url: `/pages/personal/grid/index` }) : (showBack ? Taro.navigateBack() : null)
     }
   
     render() {
-        const { showAvatar, showBack, title } = this.props
-        const { menuTop, menuHeight, userInfo } = this.state
+        const { showAvatar, showBack, title, userInfo } = this.props
+        const { menuTop, menuHeight } = this.state
         const avatarStyle = {
             width: `${ menuHeight }Px`,
             height: `${ menuHeight }Px`

@@ -30,6 +30,15 @@ export default class Home extends Component {
         this.setState({ userInfo })
     }
 
+    login = () => {
+        const { userInfo } = this.state
+        !userInfo && getUserProfile().then((res) => {
+            this.setState({ userInfo: res }, () => {
+                showToast('授权成功')
+            })
+        })
+    }
+
     // 跳转页面
     goPage = ({ url, needLogin }) => {
         const { userInfo } = this.state
@@ -60,7 +69,7 @@ export default class Home extends Component {
                 <TopBar title='我的' />
 
                 <View className='container'>
-                    <Image className='avatar' src={avatarUrl} />
+                    <Image className='avatar' src={avatarUrl} onClick={this.login} />
 
                     <View className='row-box'>
                         {

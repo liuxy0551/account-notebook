@@ -16,7 +16,8 @@ export default class Home extends Component {
         tagList: [],
         accountList: [],
         accountVisible: false,
-        account: null
+        account: null,
+        userInfo: null
     }
 
     componentDidMount() {
@@ -24,8 +25,15 @@ export default class Home extends Component {
     }
 
     componentDidShow() {
+        const { userInfo } = this.state
         this.getTagList()
         this.getPasswordInfo()
+        !userInfo && this.getUserInfo()
+    }
+
+    getUserInfo = () => {
+        const userInfo = Taro.getStorageSync('userInfo') || null
+        this.setState({ userInfo })
     }
 
     getPasswordInfo = () => {
@@ -126,11 +134,11 @@ export default class Home extends Component {
     }
 
     render() {
-        const { selectedTagId, tagList, accountList, accountVisible, account } = this.state
+        const { selectedTagId, tagList, accountList, accountVisible, account, userInfo } = this.state
 
         return (
             <View className='full-page'>
-                <TopBar showAvatar title='记账簿' />
+                <TopBar showAvatar showBack={false} userInfo={userInfo} title='记账簿' />
 
                 <View className='container'>
                     <Tabs tagList={tagList} selectedTagId={selectedTagId} tagChange={this.tagChange} />
