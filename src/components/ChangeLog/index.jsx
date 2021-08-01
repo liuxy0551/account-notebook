@@ -8,6 +8,15 @@ class ChangeLog extends Component {
     state = {
         logList: [
             {
+                version: 'v1.3.2',
+                time: '2021-08-01 21:35',
+                pointList: [
+                    '可以分享给朋友、朋友圈了',
+                    '友情链接可以打开“记账啦”微信小程序',
+                    '去除设置授权页面，无用'
+                ]
+            },
+            {
                 version: 'v1.3.1',
                 time: '2021-08-01 18:02',
                 pointList: [
