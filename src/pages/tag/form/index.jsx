@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { View, Input, Button } from '@tarojs/components'
-import { getUuid, showToast, setStorage } from '../../../utils'
+import { getUuid, showToast, setStorage, showShareMenu } from '../../../utils'
 import TopBar from '../../../components/TopBar/index'
 
 import './index.scss'
@@ -24,6 +24,8 @@ export default class Home extends Component {
         }, () => {
             tagId && this.getDetail()
         })
+
+        showShareMenu()
     }
 
     // 获取详情

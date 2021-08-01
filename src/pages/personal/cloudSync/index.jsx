@@ -3,7 +3,7 @@ import Taro from '@tarojs/taro'
 import { View, Image, Button, Switch } from '@tarojs/components'
 import TopBar from '../../../components/TopBar/index'
 import { getCloudIsPayAutoSync } from '../../../utils/user'
-import { previewImage, showToast } from '../../../utils'
+import { previewImage, showToast, showShareMenu } from '../../../utils'
 import { setBackupData, setDownloadData } from '../../../utils/cloudSync'
 import cloudIconUrl from '../../../assets/images/cloud-icon.png'
 import moreIconUrl from '../../../assets/images/more-icon.png'
@@ -21,6 +21,8 @@ export default class Home extends Component {
     componentDidMount () {
         Taro.showLoading({ title: '加载中...', mask: true })
         this.getIsPayAutoSync()
+
+        showShareMenu()
     }
 
     // 是否支付过、自动同步

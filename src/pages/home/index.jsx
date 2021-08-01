@@ -5,7 +5,7 @@ import TopBar from '../../components/TopBar/index'
 import Empty from '../../components/Empty/index'
 import Tabs from './components/Tabs/index'
 import AccountDetail from './components/AccountDetail/index'
-import { setStorage, getTimeStr, initTagList } from '../../utils'
+import { setStorage, getTimeStr, initTagList, showShareMenu } from '../../utils'
 import addBtnUrl from '../../assets/images/add-btn.png'
 
 import './index.scss'
@@ -21,7 +21,7 @@ export default class Home extends Component {
     }
 
     componentDidMount() {
-
+        showShareMenu()
     }
 
     componentDidShow() {

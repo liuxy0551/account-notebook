@@ -2,7 +2,7 @@ import { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { View, Text, Input, Button } from '@tarojs/components'
 import ChangeLog from '../../../components/ChangeLog'
-import { showToast, getFingerPrintSupport, startSoterAuthentication, setStorage } from '../../../utils'
+import { showToast, getFingerPrintSupport, startSoterAuthentication, setStorage, showShareMenu } from '../../../utils'
 import TopBar from '../../../components/TopBar/index'
 import { version } from '../../../../package.json'
 
@@ -20,6 +20,8 @@ export default class Home extends Component {
 
     componentDidMount() {
         this.getIsUpdatedFirst()
+        
+        showShareMenu()
     }
 
     // 是否更新后第一次进入小程序

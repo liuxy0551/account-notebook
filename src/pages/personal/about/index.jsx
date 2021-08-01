@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import { View, Image, Text } from '@tarojs/components'
 import ChangeLog from '../../../components/ChangeLog'
-import { getUpdateInfo } from '../../../utils'
+import { getUpdateInfo, showShareMenu } from '../../../utils'
 import TopBar from '../../../components/TopBar/index'
 import shareImgUrl from '../../../assets/images/share.jpg'
 import wechatQrcodeUrl from '../../../assets/images/wechat-qrcode.png'
@@ -12,6 +12,10 @@ import './index.scss'
 export default class Home extends Component {
     state = {
         logVisible: false
+    }
+
+    componentDidMount() {
+        showShareMenu()
     }
 
     // 查询升级信息

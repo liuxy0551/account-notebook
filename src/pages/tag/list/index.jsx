@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
-import { showToast, setStorage } from '../../../utils'
+import { showToast, setStorage, showShareMenu } from '../../../utils'
 import TopBar from '../../../components/TopBar/index'
 import addBtnUrl from '../../../assets/images/add-btn.png'
 import editIconUrl from '../../../assets/images/edit-icon.png'
@@ -15,7 +15,7 @@ export default class Home extends Component {
     }
 
     componentDidMount() {
-
+        showShareMenu()
     }
 
     componentDidShow () {

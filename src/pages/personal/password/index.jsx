@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { View, Input, Switch, Button } from '@tarojs/components'
-import { showToast, setStorage, getTimeStr } from '../../../utils'
+import { showToast, setStorage, getTimeStr, showShareMenu } from '../../../utils'
 import TopBar from '../../../components/TopBar/index'
 
 import './index.scss'
@@ -25,6 +25,8 @@ export default class Home extends Component {
         this.getDetail()
         this.getFingerPrint()
         // showToast('安全密码建议 4 至 8 位数字', 3000)
+
+        showShareMenu()
     }
 
     // 当前设备是否支持指纹解锁、是否开启了指纹解锁

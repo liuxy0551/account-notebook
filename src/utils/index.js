@@ -59,10 +59,19 @@ const previewImage = (urls = [], current) => {
     })
 }
 
+// 显示分享给朋友、朋友圈
+const showShareMenu = () => {
+    Taro.showShareMenu({
+        withShareTicket: true,
+        menus: ['shareAppMessage', 'shareTimeline']
+    })
+}
+
 export {
     getUuid,
     showToast,
     previewImage,
+    showShareMenu,
     setStorage,
     getTimeStr,
     getFingerPrintSupport,

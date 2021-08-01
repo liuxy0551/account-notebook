@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import Taro from '@tarojs/taro'
-import { View, Image, Button } from '@tarojs/components'
-import { showToast } from '../../../utils'
+import { View, Image } from '@tarojs/components'
+import { showShareMenu, showToast } from '../../../utils'
 import { getUserProfile } from '../../../utils/user'
 import TopBar from '../../../components/TopBar/index'
 import defaultAvatar from '../../../assets/images/default_avatar.png'
@@ -23,6 +23,8 @@ export default class Home extends Component {
 
     componentDidMount() {
         this.getUserInfo()
+
+        showShareMenu()
     }
 
     getUserInfo = () => {
@@ -55,11 +57,6 @@ export default class Home extends Component {
         }
     }
 
-    // 调起小程序设置界面
-    openSetting = () => {
-        Taro.openSetting()
-    }
-
     render() {
         const { userInfo, optionList } = this.state
         const avatarUrl = userInfo?.avatarUrl || defaultAvatar
@@ -78,9 +75,6 @@ export default class Home extends Component {
                                     <View className='row-item' key={item.name} onClick={() => { this.goPage(item) }}>
                                         <View className='name'>{ item.name }</View>
                                         <Image className='more-icon' src={moreIconUrl} />
-                                        {
-                                            item.name === '设置授权' && <Button className='open-setting' open-type='openSetting' onOpenSetting={this.openSetting}>授权</Button>
-                                        }
                                     </View>
                                 )
                             })

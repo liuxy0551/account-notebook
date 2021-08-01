@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { View, Input, Button, Image } from '@tarojs/components'
-import { getUuid, showToast, setStorage, getTimeStr } from '../../../utils'
+import { getUuid, showToast, setStorage, getTimeStr, showShareMenu } from '../../../utils'
 import TopBar from '../../../components/TopBar/index'
 import TagList from '../components/TagList'
 import passwordIconUrl from '../../../assets/images/password-icon.png'
@@ -36,6 +36,8 @@ export default class Home extends Component {
         }, () => {
             accountId && this.getDetail()
         })
+
+        showShareMenu()
     }
 
     // 获取详情
