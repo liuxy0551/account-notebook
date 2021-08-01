@@ -1,7 +1,8 @@
 import { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { View, Image, Button } from '@tarojs/components'
-import { cloudInit, getUserProfile } from '../../../utils'
+import { showToast } from '../../../utils'
+import { getUserProfile } from '../../../utils/user'
 import TopBar from '../../../components/TopBar/index'
 import defaultAvatar from '../../../assets/images/default_avatar.png'
 import moreIconUrl from '../../../assets/images/more-icon.png'
@@ -13,7 +14,7 @@ export default class Home extends Component {
         userInfo: null,
         optionList: [
             { name: '安全密码', url: '/pages/personal/password/index' },
-            { name: '云同步', url: '/pages/personal/cloudSync/index' },
+            { name: '云同步', url: '/pages/personal/cloudSync/index', needLogin: true },
             { name: '设置授权' },
             { name: '关于', url: '/pages/personal/about/index' },
             { name: '友情链接', url: '/pages/personal/friend/index' },
@@ -21,7 +22,6 @@ export default class Home extends Component {
     }
 
     componentDidMount() {
-        cloudInit()
         this.getUserInfo()
     }
 
@@ -31,15 +31,19 @@ export default class Home extends Component {
     }
 
     // 跳转页面
-    goPage = ({ url }) => {
+    goPage = ({ url, needLogin }) => {
         const { userInfo } = this.state
         if (!url) return
-        if (userInfo) return Taro.navigateTo({ url })
-        getUserProfile().then((res) => {
-            this.setState({ userInfo: res }, () => {
-                Taro.navigateTo({ url })
+        if (!needLogin || userInfo) return Taro.navigateTo({ url })
+        if (!userInfo) {
+            getUserProfile().then((res) => {
+                this.setState({ userInfo: res }, () => {
+                    showToast('授权成功').then(() => {
+                        Taro.navigateTo({ url })
+                    })
+                })
             })
-        })
+        }
     }
 
     // 调起小程序设置界面

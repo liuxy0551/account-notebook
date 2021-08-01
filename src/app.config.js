@@ -1,6 +1,5 @@
 export default {
   pages: [
-    'pages/personal/cloudSync/index',
     'pages/personal/unlock/index',
     
     'pages/home/index',
@@ -12,6 +11,7 @@ export default {
     
     'pages/personal/grid/index',
     'pages/personal/password/index',
+    'pages/personal/cloudSync/index',
     'pages/personal/about/index',
     'pages/personal/changelog/index',
   ],
