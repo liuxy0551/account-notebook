@@ -1,6 +1,6 @@
 {
   "miniprogramRoot": "dist/",
-  "projectname": "account-notebook-wechat",
+  "projectname": "account-notebook",
   "description": "",
   "cloudfunctionRoot": "cloud/",
   "appid": "wx416dfa2165b3e4c0",

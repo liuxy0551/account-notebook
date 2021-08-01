@@ -37,7 +37,7 @@
 #### 代码结构
 
 ```
-account-notebook-wechat
+account-notebook
 ├─package.json
 ├─src
 |  ├─app.config.js  公用配置项

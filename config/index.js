@@ -1,5 +1,5 @@
 const config = {
-  projectName: 'account-notebook-wechat',
+  projectName: 'account-notebook',
   date: '2021-7-24',
   designWidth: 750,
   deviceRatio: {
