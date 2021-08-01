@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import Taro from '@tarojs/taro'
-import { View, Image } from '@tarojs/components'
-import { showShareMenu, showToast } from '../../../utils'
+import { View, Image, Button } from '@tarojs/components'
+import { showToast, showShareMenu } from '../../../utils'
 import { getUserProfile } from '../../../utils/user'
 import TopBar from '../../../components/TopBar/index'
 import defaultAvatar from '../../../assets/images/default_avatar.png'
@@ -15,9 +15,9 @@ export default class Home extends Component {
         optionList: [
             { name: '安全密码', url: '/pages/personal/password/index' },
             { name: '云同步', url: '/pages/personal/cloudSync/index', needLogin: true },
-            { name: '设置授权' },
+            { name: '联系开发者' },
             { name: '关于', url: '/pages/personal/about/index' },
-            { name: '友情链接', url: '/pages/personal/friend/index' },
+            { name: '友情链接' }
         ]
     }
 
@@ -42,9 +42,9 @@ export default class Home extends Component {
     }
 
     // 跳转页面
-    goPage = ({ url, needLogin }) => {
+    goPage = ({ name, url, needLogin }) => {
         const { userInfo } = this.state
-        if (!url) return
+        if (!url && name === '友情链接') return Taro.navigateToMiniProgram({ appId: 'wxc3146b74ec7c8e5c' })
         if (!needLogin || userInfo) return Taro.navigateTo({ url })
         if (!userInfo) {
             getUserProfile().then((res) => {
@@ -75,6 +75,9 @@ export default class Home extends Component {
                                     <View className='row-item' key={item.name} onClick={() => { this.goPage(item) }}>
                                         <View className='name'>{ item.name }</View>
                                         <Image className='more-icon' src={moreIconUrl} />
+                                        {
+                                            item.name === '联系开发者' && <Button className='contact-btn' type='primary' open-type='contact'>联系开发者</Button>
+                                        }
                                     </View>
                                 )
                             })
