@@ -32,7 +32,6 @@ const setBackupData = async () => {
         console.log(msg, err)
         showToast(msg)
     }
-    Taro.hideLoading()
 }
 
 // 更新数据
@@ -69,14 +68,15 @@ const setDownloadData = async (index) => {
             const { tagList } = tagListData[0]
             const { accountList } = accountListData[0]
             await setDataStorage(index, tagList, accountList)
-            showToast(`${ index === 2 ? '下载' : '合并' }成功`)
+            showToast(`${ index === 2 ? '下载' : '合并' }成功`).then(() => {
+                Taro.navigateBack({ delta: 2 })
+            })
         }
     } catch (err) {
         const msg = `${ index === 2 ? '下载' : '合并' }失败`
         console.log(msg, err)
         showToast(msg)
     }
-    Taro.hideLoading()
 }
 
 // 保存到本地

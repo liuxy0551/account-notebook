@@ -1,10 +1,10 @@
 import { Component } from 'react'
+import { AtFloatLayout } from "taro-ui"
 import { View } from '@tarojs/components'
-import TopBar from '../../../components/TopBar/index'
 
 import './index.scss'
 
-export default class Home extends Component {
+class ChangeLog extends Component {
     state = {
         logList: [
             {
@@ -12,6 +12,7 @@ export default class Home extends Component {
                 time: '2021-08-01 13:49',
                 pointList: [
                     '修复 更新后进入小程序跳到更新日志页面但提示指纹解锁',
+                    '更新日志有弹出框显示',
                     '点击“关于”页面中的版本号，可检查更新'
                 ]
             },
@@ -49,14 +50,13 @@ export default class Home extends Component {
             }
         ]
     }
-
+  
     render() {
         const { logList } = this.state
-
+        const { logVisible, onClose } = this.props
+        
         return (
-            <View className='full-page'>
-                <TopBar title='更新日志' />
-
+            <AtFloatLayout title='更新日志' isOpened={logVisible} onClose={onClose}>
                 <View className='log-container'>
                     <View className='log-box'>
                         {
@@ -76,7 +76,9 @@ export default class Home extends Component {
                         }
                     </View>
                 </View>
-            </View>
+            </AtFloatLayout>
         )
     }
 }
+
+export default ChangeLog

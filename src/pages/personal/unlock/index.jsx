@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { View, Text, Input, Button } from '@tarojs/components'
+import ChangeLog from '../../../components/ChangeLog'
 import { showToast, getFingerPrintSupport, startSoterAuthentication, setStorage } from '../../../utils'
 import TopBar from '../../../components/TopBar/index'
 import { version } from '../../../../package.json'
@@ -13,24 +14,27 @@ export default class Home extends Component {
         password: '',
         passwordFocus: false,
         fingerPrintSupport: false,
-        useFingerPrint: true
+        useFingerPrint: true,
+        logVisible: false
     }
 
-    componentDidShow() {
-        Taro.showLoading({ title: '加载中...' })
+    componentDidMount() {
         this.getIsUpdatedFirst()
     }
 
     // 是否更新后第一次进入小程序
     getIsUpdatedFirst = () => {
-        const isUpdatedFirst = Taro.getStorageSync('version') !== version
-        if (!isUpdatedFirst) return this.getFingerPrint()
+        let localVersion = Taro.getStorageSync('version')
+        const logVisible = localVersion !== version
+
+        if (!logVisible) return this.getFingerPrint()
         setStorage('version', version)
-        Taro.navigateTo({ url: `/pages/personal/changelog/index` })
+        this.setState({ logVisible })
     }
 
     // 当前设备是否支持指纹解锁、是否开启了指纹解锁
     getFingerPrint = async () => {
+        Taro.showLoading({ title: '加载中...' })
         const fingerPrintSupport = await getFingerPrintSupport()
         let useFingerPrint = Taro.getStorageSync('useFingerPrint')
         if (useFingerPrint === '') { // 第一次进入，默认使用指纹解锁
@@ -117,6 +121,12 @@ export default class Home extends Component {
         this.setState({ password })
     }
 
+    onClose = () => {
+        this.setState({ logVisible: false }, () => {
+            this.getFingerPrint()
+        })
+    }
+
     // 保存
     save = () => {
         const { passwordInfo, password } = this.state
@@ -137,7 +147,7 @@ export default class Home extends Component {
     }
 
     render() {
-        const { title, showContent, password, passwordFocus, fingerPrintSupport, useFingerPrint } = this.state
+        const { title, showContent, password, passwordFocus, fingerPrintSupport, useFingerPrint, logVisible } = this.state
 
         return (
             <View className='full-page'>
@@ -163,6 +173,8 @@ export default class Home extends Component {
                         </View>
                     </View>
                 }
+                
+                <ChangeLog logVisible={logVisible} onClose={this.onClose} />
             </View>
         )
     }

@@ -25,6 +25,7 @@ export default class Home extends Component {
     }
 
     componentDidShow() {
+        Taro.showLoading({ title: '加载中...' })
         const { userInfo } = this.state
         this.getTagList()
         this.getPasswordInfo()
@@ -67,6 +68,15 @@ export default class Home extends Component {
         this.tagChange(tagList[0])
     }
 
+    // 左侧tab变化
+    tagChange = (tag) => {
+        this.setState({
+            selectedTagId: tag?.id
+        }, () => {
+            this.getAccountList()
+        })
+    }
+
     // 获取标签下的账号列表
     getAccountList = () => {
         const { selectedTagId, tagList } = this.state
@@ -83,7 +93,9 @@ export default class Home extends Component {
         } else {
             accountList = list
         }
-        this.setState({ accountList })
+        this.setState({ accountList }, () => {
+            Taro.hideLoading()
+        })
     }
 
     // 添加账号
@@ -99,15 +111,6 @@ export default class Home extends Component {
             setTimeout(() => {
                 this.setState({ accountVisible: true })
             }, 50)
-        })
-    }
-
-    // 左侧tab变化
-    tagChange = (tag) => {
-        this.setState({
-            selectedTagId: tag?.id
-        }, () => {
-            this.getAccountList()
         })
     }
 

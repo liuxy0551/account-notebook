@@ -13,7 +13,6 @@ export default {
     'pages/personal/password/index',
     'pages/personal/cloudSync/index',
     'pages/personal/about/index',
-    'pages/personal/changelog/index',
   ],
   window: {
     backgroundTextStyle: 'light',
