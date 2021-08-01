@@ -9,7 +9,7 @@ class ChangeLog extends Component {
         logList: [
             {
                 version: 'v1.3.1',
-                time: '2021-08-01 13:49',
+                time: '2021-08-01 18:02',
                 pointList: [
                     '修复 更新后进入小程序跳到更新日志页面但提示指纹解锁',
                     '更新日志用弹出框显示',
