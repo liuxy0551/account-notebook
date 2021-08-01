@@ -3,6 +3,7 @@ import Taro from '@tarojs/taro'
 import { View, Text, Input, Button } from '@tarojs/components'
 import { showToast, getFingerPrintSupport, startSoterAuthentication, setStorage } from '../../../utils'
 import TopBar from '../../../components/TopBar/index'
+import { version } from '../../../../package.json'
 
 export default class Home extends Component {
     state = {
@@ -17,7 +18,16 @@ export default class Home extends Component {
 
     componentDidMount() {
         Taro.showLoading({ title: '加载中...' })
+        this.getIsUpdatedFirst()
         this.getFingerPrint()
+    }
+
+    // 是否更新后第一次进入小程序
+    getIsUpdatedFirst = () => {
+        const isUpdatedFirst = Taro.getStorageSync('version') !== version
+        if (!isUpdatedFirst) return
+        setStorage('version', version)
+        Taro.navigateTo({ url: `/pages/personal/changelog/index` })
     }
 
     // 当前设备是否支持指纹解锁、是否开启了指纹解锁

@@ -8,6 +8,14 @@ export default class Home extends Component {
     state = {
         logList: [
             {
+                version: 'v1.3.0',
+                time: '2021-08-01 12:39',
+                pointList: [
+                    '支持开发者后可以使用云同步啦~',
+                    '指纹解锁可开关'
+                ]
+            },
+            {
                 version: 'v1.2.0',
                 time: '2021-07-29 23:07',
                 pointList: [
