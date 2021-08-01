@@ -106,7 +106,8 @@ const setDataStorage = async (index, cloudTagList, cloudAccountList) => {
             tagList = cloudTagList
             accountList = cloudAccountList
             for (let localTag of localTagList) {
-                !cloudTagIdList.includes(localTag.id) && tagList.push(localTag)
+                // 把全部账号放在最前面
+                !cloudTagIdList.includes(localTag.id) && (localTag.id === 'all' ? tagList.unshift(localTag) : tagList.push(localTag))
             }
             for (let localAccount of localAccountList) {
                 !cloudAccountIdList.includes(localAccount.id) && accountList.push(localAccount)
@@ -114,6 +115,7 @@ const setDataStorage = async (index, cloudTagList, cloudAccountList) => {
             break
         case 2: // 清除本地数据再下载备份
             tagList = cloudTagList
+            tagList.unshift({ id: 'all', name: '全部账号' }) // // 把全部账号放在最前面
             accountList = cloudAccountList
             break
         default:
