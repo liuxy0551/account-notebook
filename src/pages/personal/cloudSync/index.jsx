@@ -91,7 +91,7 @@ export default class Home extends Component {
                                 <View className='row-box'>
                                     <View className='row-item' onClick={() => { showToast('敬请期待') }}>
                                         <View className='name'>自动同步</View>
-                                        <Switch className='sync-switch' checked={autoSync} disabled onChange={this.autoSyncChange} />
+                                        <Switch checked={autoSync} disabled onChange={this.autoSyncChange} />
                                     </View>
                                     <View className='row-item' onClick={() => { showToast('敬请期待') }}>
                                         <View className='name'>备份记录</View>

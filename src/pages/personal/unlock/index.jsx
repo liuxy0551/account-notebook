@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { View, Text, Input, Button } from '@tarojs/components'
-import { showToast, getFingerPrintSupport, startSoterAuthentication } from '../../../utils'
+import { showToast, getFingerPrintSupport, startSoterAuthentication, setStorage } from '../../../utils'
 import TopBar from '../../../components/TopBar/index'
 
 export default class Home extends Component {
@@ -10,16 +10,33 @@ export default class Home extends Component {
         showContent: false,
         passwordInfo: null,
         password: '',
-        passwordFocus: false
+        passwordFocus: false,
+        fingerPrintSupport: false,
+        useFingerPrint: true
     }
 
     componentDidMount() {
         Taro.showLoading({ title: '加载中...' })
-        this.getDetail()
+        this.getFingerPrint()
+    }
+
+    // 当前设备是否支持指纹解锁、是否开启了指纹解锁
+    getFingerPrint = async () => {
+        const fingerPrintSupport = await getFingerPrintSupport()
+        let useFingerPrint = Taro.getStorageSync('useFingerPrint')
+        if (useFingerPrint === '') { // 第一次进入，默认使用指纹解锁
+            useFingerPrint = fingerPrintSupport ? true : false
+            setStorage('useFingerPrint', useFingerPrint)
+        }
+
+        this.setState({ fingerPrintSupport, useFingerPrint }, () => {
+            this.getDetail()
+        })
     }
 
     // 获取详情
     getDetail = () => {
+        const { fingerPrintSupport, useFingerPrint } = this.state
         const passwordInfo = Taro.getStorageSync('passwordInfo')
         if (!passwordInfo?.password) return Taro.redirectTo({ url: '/pages/home/index' })
         this.setState({
@@ -28,15 +45,15 @@ export default class Home extends Component {
             showContent: true
         }, () => {
             Taro.hideLoading()
+
+            if (!fingerPrintSupport) return this.setState({ passwordFocus: true })
+            if (!useFingerPrint) return this.setState({ passwordFocus: true })
             this.startFingerPrint()
         })
     }
 
     // 开始指纹识别
     startFingerPrint = async () => {
-        const fingerPrintSupport = await getFingerPrintSupport()
-        if (!fingerPrintSupport) return this.setState({ passwordFocus: true })
-
         const result = await startSoterAuthentication()
         if (result?.errMsg?.includes('cancel') && result?.errCode === 90008) return showToast('用户取消指纹解锁').then(() => {
             this.setState({ passwordFocus: true })
@@ -111,7 +128,7 @@ export default class Home extends Component {
     }
 
     render() {
-        const { title, showContent, password, passwordFocus } = this.state
+        const { title, showContent, password, passwordFocus, fingerPrintSupport, useFingerPrint } = this.state
 
         return (
             <View className='full-page'>
@@ -125,7 +142,9 @@ export default class Home extends Component {
                                 <Input className='password-input' type='number' password value={password} onInput={this.handlePasswordChange} placeholder='请输入当前安全密码' maxlength={8} focus={passwordFocus} onBlur={() => { this.setState({ passwordFocus: false }) }} />
                             </View>
                             <View className='help-box'>
-                                <Text onClick={this.startFingerPrint}>指纹解锁</Text>
+                                {
+                                    fingerPrintSupport && useFingerPrint ? <Text onClick={this.startFingerPrint}>指纹解锁</Text> : <Text />
+                                }
                                 <Text onClick={this.showHelpModal}>帮助？</Text>
                             </View>
                         </View>

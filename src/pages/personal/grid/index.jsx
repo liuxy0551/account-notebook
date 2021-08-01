@@ -76,7 +76,7 @@ export default class Home extends Component {
                             optionList.map(item => {
                                 return (
                                     <View className='row-item' key={item.name} onClick={() => { this.goPage(item) }}>
-                                        <View className='title'>{ item.name }</View>
+                                        <View className='name'>{ item.name }</View>
                                         <Image className='more-icon' src={moreIconUrl} />
                                         {
                                             item.name === '设置授权' && <Button className='open-setting' open-type='openSetting' onOpenSetting={this.openSetting}>授权</Button>

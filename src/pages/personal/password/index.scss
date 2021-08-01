@@ -1,0 +1,19 @@
+.password-container {
+    flex: 1;
+    overflow: auto;
+
+    .row-box {
+        padding-top: 40rpx;
+        .row-item {
+            line-height: 110rpx;
+            padding: 0 50rpx;
+            border-bottom: 2rpx #F5F5F5 solid;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .name {
+                font-size: 34rpx;
+            }
+        }
+    }
+}
