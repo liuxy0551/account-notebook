@@ -16,6 +16,7 @@ export default class Home extends Component {
             { name: '安全密码', url: '/pages/personal/password/index' },
             { name: '云同步', url: '/pages/personal/cloudSync/index', needLogin: true },
             { name: '联系开发者' },
+            { name: '审查代码' },
             { name: '关于', url: '/pages/personal/about/index' },
             { name: '友情链接' }
         ]
@@ -43,7 +44,16 @@ export default class Home extends Component {
 
     // 跳转页面
     goPage = ({ name, url, needLogin }) => {
+        const codeUrl = 'https://github.com/liuxy0551/account-notebook'
         const { userInfo } = this.state
+        if (!url && name === '审查代码') return Taro.showModal({
+            cancelText: '欢迎star',
+            confirmText: '复制地址',
+            content: `『账号簿』代码开源，可以访问 ${ codeUrl } 审查代码`,
+            success: ({ confirm }) => {
+                confirm && Taro.setClipboardData({ data: codeUrl })
+            }
+        })
         if (!url && name === '友情链接') return Taro.navigateToMiniProgram({ appId: 'wxc3146b74ec7c8e5c' })
         if (!needLogin || userInfo) return Taro.navigateTo({ url })
         if (!userInfo) {

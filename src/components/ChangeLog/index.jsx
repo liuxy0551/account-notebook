@@ -8,6 +8,14 @@ class ChangeLog extends Component {
     state = {
         logList: [
             {
+                version: 'v1.3.3',
+                time: '2021-08-01 23:53',
+                pointList: [
+                    '代码开源',
+                    'README.md'
+                ]
+            },
+            {
                 version: 'v1.3.2',
                 time: '2021-08-01 21:35',
                 pointList: [
