@@ -25,7 +25,7 @@ export default class Home extends Component {
     }
 
     componentDidShow() {
-        Taro.showLoading({ title: '加载中...' })
+        Taro.showLoading({ title: '加载中...', mask: true })
         const { userInfo } = this.state
         this.getTagList()
         this.getPasswordInfo()

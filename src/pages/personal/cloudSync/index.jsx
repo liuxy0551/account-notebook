@@ -19,7 +19,7 @@ export default class Home extends Component {
     }
 
     componentDidMount () {
-        Taro.showLoading({ title: '加载中...' })
+        Taro.showLoading({ title: '加载中...', mask: true })
         this.getIsPayAutoSync()
     }
 

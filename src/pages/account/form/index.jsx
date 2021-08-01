@@ -20,7 +20,7 @@ export default class Home extends Component {
         tagList: [],
         tagIdList: [],
         loading: false,
-        nameFocus: false,
+        nameFocus: true,
         usernameFocus: false,
         passwordFocus: false,
         tagListVisible: false

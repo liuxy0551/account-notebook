@@ -7,7 +7,7 @@ const DB = Taro.cloud.database()
 
 // 备份需要加密账号和密码
 const setBackupData = async () => {
-    Taro.showLoading({ title: '备份中...' })
+    Taro.showLoading({ title: '备份中...', mask: true })
     try {
         let tagList = Taro.getStorageSync('tagList') || []
         let accountList = Taro.getStorageSync('accountList') || []
@@ -55,7 +55,7 @@ const updateCloudData = async (key, value, _openid) => {
 
 // 下载后解密账号和密码
 const setDownloadData = async (index) => {
-    Taro.showLoading({ title: '下载中...' })
+    Taro.showLoading({ title: '下载中...', mask: true })
     try {
         const { result: _openid } = await Taro.cloud.callFunction({ name: 'getOpenId' })
 

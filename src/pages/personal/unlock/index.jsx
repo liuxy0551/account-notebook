@@ -34,7 +34,7 @@ export default class Home extends Component {
 
     // 当前设备是否支持指纹解锁、是否开启了指纹解锁
     getFingerPrint = async () => {
-        Taro.showLoading({ title: '加载中...' })
+        Taro.showLoading({ title: '加载中...', mask: true })
         const fingerPrintSupport = await getFingerPrintSupport()
         let useFingerPrint = Taro.getStorageSync('useFingerPrint')
         if (useFingerPrint === '') { // 第一次进入，默认使用指纹解锁
