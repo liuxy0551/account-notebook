@@ -1,4 +1,5 @@
 // 初始化数据
+import Taro from '@tarojs/taro'
 import { setStorage } from './updateData'
 import { getTimeStr } from './index'
 
@@ -9,6 +10,15 @@ const getUuid = () => {
 			v = c == 'x' ? r : (r & 0x3 | 0x8)
 		return v.toString(16)
 	})
+}
+
+// 初始化数据
+const initData = async () => {
+    const { setDownloadData } = require('./cloudSync')
+    await setDownloadData(2, true)
+    let tagList = Taro.getStorageSync('tagList') || []
+    if (!tagList.length) tagList = await initTagList()
+    return tagList
 }
 
 // 初始化标签列表
@@ -66,5 +76,5 @@ const initAccount = async (tagId1, tagId2) => {
 
 export {
     getUuid,
-    initTagList
+    initData
 }

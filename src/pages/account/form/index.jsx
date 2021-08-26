@@ -133,7 +133,7 @@ export default class Home extends Component {
             accountList.push(account)
         }
 
-        setStorage('accountList', accountList).then(() => {
+        setStorage('accountList', accountList, true).then(() => {
             showToast('保存成功').then(() => {
                 this.setState({ loading: false })
                 Taro.navigateBack()

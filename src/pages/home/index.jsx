@@ -5,7 +5,7 @@ import TopBar from '../../components/TopBar/index'
 import Empty from '../../components/Empty/index'
 import Tabs from './components/Tabs/index'
 import AccountDetail from './components/AccountDetail/index'
-import { setStorage, getTimeStr, initTagList, showShareMenu } from '../../utils'
+import { setStorage, getTimeStr, initData, showShareMenu } from '../../utils'
 import addBtnUrl from '../../assets/images/add-btn.png'
 
 import './index.scss'
@@ -28,7 +28,6 @@ export default class Home extends Component {
         Taro.showLoading({ title: '加载中...', mask: true })
         const { userInfo } = this.state
         this.getTagList()
-        this.getPasswordInfo()
         !userInfo && this.getUserInfo()
     }
 
@@ -63,7 +62,7 @@ export default class Home extends Component {
     // 获取标签列表
     getTagList = async () => {
         let tagList = Taro.getStorageSync('tagList') || []
-        if (!tagList.length) tagList = await initTagList()
+        if (!tagList.length) tagList = await initData()
         this.setState({ tagList })
         this.tagChange(tagList[0])
     }
@@ -95,6 +94,7 @@ export default class Home extends Component {
         }
         this.setState({ accountList }, () => {
             Taro.hideLoading()
+            this.getPasswordInfo()
         })
     }
 

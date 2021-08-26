@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro'
-import { getUuid, initTagList } from './initData'
+import { getUuid, initData } from './initData'
 import { getFingerPrintSupport, startSoterAuthentication, cloudInit, getUpdateInfo } from './system'
 import { setStorage } from './updateData'
 
@@ -79,5 +79,5 @@ export {
     cloudInit,
     getUpdateInfo,
     getTopBarHeight,
-    initTagList,
+    initData,
 }
