@@ -133,7 +133,24 @@ const setDataStorage = async (index, cloudTagList, cloudAccountList) => {
     }))
 }
 
+// 更新用户自动同步功能
+const updateUserAutoSync = async (autoSync) => {
+    const { result: _openid } = await Taro.cloud.callFunction({ name: 'getOpenId' })
+    const data = {
+        autoSync,
+        updateTime: getTimeStr()
+    }
+
+    const res = await DB.collection('userList').where({
+        _openid
+    }).update({
+        data
+    })
+    return res?.stats?.updated !== 0
+}
+
 export {
     setBackupData,
-    setDownloadData
+    setDownloadData,
+    updateUserAutoSync
 }

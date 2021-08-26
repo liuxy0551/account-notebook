@@ -8,6 +8,13 @@ class ChangeLog extends Component {
     state = {
         logList: [
             {
+                version: 'v1.3.4',
+                time: '2021-08-26 21:18',
+                pointList: [
+                    '自动同步功能支持开发者配置开启，开启后可关闭，但关闭后不可再次开启'
+                ]
+            },
+            {
                 version: 'v1.3.3',
                 time: '2021-08-01 23:53',
                 pointList: [
