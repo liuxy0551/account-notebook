@@ -55,14 +55,16 @@ class TagList extends Component {
         return (
             <AtFloatLayout isOpened={tagListVisible} onClose={onClose}>
                 <View className='tag-content'>
-                    <View className='tag-box'>
-                        {
-                            tagList.map((item, idx) => {
-                                return (
-                                    item.id !== 'all' && <View className={`tag-item ${ item.active ? 'active' : '' }`} key={item.id} onClick={() => this.chooseTag(idx)}>{ item.name }</View>
-                                )
-                            })
-                        }
+                    <View className="tag-box-part">
+                        <View className='tag-box'>
+                            {
+                                tagList.map((item, idx) => {
+                                    return (
+                                        item.id !== 'all' && <View className={`tag-item ${ item.active ? 'active' : '' }`} key={item.id} onClick={() => this.chooseTag(idx)}>{ item.name }</View>
+                                    )
+                                })
+                            }
+                        </View>
                     </View>
 
                     <View className='bottom-box'>
