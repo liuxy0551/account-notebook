@@ -49,7 +49,7 @@ export default class Home extends Component {
                 if (!confirm) return
                 tagList.splice(tagList.map(tag => tag.id).indexOf(item.id), 1)
                 this.setState({ tagList })
-                setStorage('tagList', tagList).then(() => {
+                setStorage('tagList', tagList, true).then(() => {
                     showToast('删除成功')
                 })
             }

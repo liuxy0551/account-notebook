@@ -22,7 +22,7 @@ export default class Home extends Component {
     }
 
     componentDidMount() {
-        this.getDetail()
+        this.getPasswordDetail()
         this.getFingerPrint()
         // showToast('安全密码建议 4 至 8 位数字', 3000)
 
@@ -38,7 +38,7 @@ export default class Home extends Component {
     }
 
     // 获取详情
-    getDetail = () => {
+    getPasswordDetail = () => {
         const passwordInfo = Taro.getStorageSync('passwordInfo')
         this.setState({
             isFirst: !passwordInfo,

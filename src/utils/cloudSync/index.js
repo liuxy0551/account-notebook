@@ -6,27 +6,30 @@ import { aesEncrypt, aesDecrypt } from './crypto'
 const DB = Taro.cloud.database()
 
 // 备份需要加密账号和密码
-const setBackupData = async () => {
-    Taro.showLoading({ title: '备份中...', mask: true })
+const setBackupData = async (list = ['tagList', 'accountList']) => {
+    list.length === 2 && Taro.showLoading({ title: '备份中...', mask: true })
     try {
-        let tagList = Taro.getStorageSync('tagList') || []
-        let accountList = Taro.getStorageSync('accountList') || []
-
-        tagList = tagList.filter(item => item.id !== 'all')
-        accountList = accountList.map(item => {
-            return {
-                ...item,
-                username: aesEncrypt(item.username),
-                password: aesEncrypt(item.password),
-                encrypted: true
-            }
-        })
-
         const { result: _openid } = await Taro.cloud.callFunction({ name: 'getOpenId' })
-        await updateCloudData('tagList', tagList, _openid)
-        await updateCloudData('accountList', accountList, _openid)
 
-        showToast('备份成功')
+        let tagList, accountList
+        if (list.includes('tagList')) {
+            tagList = Taro.getStorageSync('tagList') || []
+            tagList = tagList.filter(item => item.id !== 'all')
+            await updateCloudData('tagList', tagList, _openid)
+        }
+        if (list.includes('accountList')) {
+            accountList = Taro.getStorageSync('accountList') || []
+            accountList = accountList.map(item => {
+                return {
+                    ...item,
+                    username: aesEncrypt(item.username),
+                    password: aesEncrypt(item.password),
+                    encrypted: true
+                }
+            })
+            await updateCloudData('accountList', accountList, _openid)
+        }
+        list.length === 2 && showToast('备份成功')
     } catch (err) {
         const msg = '备份失败，请稍后重试'
         console.log(msg, err)
@@ -53,9 +56,9 @@ const updateCloudData = async (key, value, _openid) => {
     })
 }
 
-// 下载后解密账号和密码
-const setDownloadData = async (index) => {
-    Taro.showLoading({ title: '下载中...', mask: true })
+// 下载后解密账号和密码 isFrst 为 true 的时候，是第一次进入小程序下载远程数据
+const setDownloadData = async (index, isFrst = false) => {
+    !isFrst && Taro.showLoading({ title: '下载中...', mask: true })
     try {
         const { result: _openid } = await Taro.cloud.callFunction({ name: 'getOpenId' })
 
@@ -63,12 +66,12 @@ const setDownloadData = async (index) => {
         const { data: accountListData = [] } = await DB.collection('accountList').where({ _openid }).get()
 
         if (!tagListData.length && !accountListData.length) {
-            showToast('没有备份记录，请先备份')
+            !isFrst && showToast('没有备份记录，请先备份')
         } else {
             const { tagList } = tagListData[0]
             const { accountList } = accountListData[0]
             await setDataStorage(index, tagList, accountList)
-            showToast(`${ index === 2 ? '下载' : '合并' }成功`).then(() => {
+            !isFrst && showToast(`${ index === 2 ? '下载' : '合并' }成功`).then(() => {
                 Taro.navigateBack({ delta: 2 })
             })
         }
@@ -133,7 +136,24 @@ const setDataStorage = async (index, cloudTagList, cloudAccountList) => {
     }))
 }
 
+// 更新用户自动同步的配置项
+const updateUserAutoSync = async (autoSync) => {
+    const { result: _openid } = await Taro.cloud.callFunction({ name: 'getOpenId' })
+    const data = {
+        autoSync,
+        updateTime: getTimeStr()
+    }
+
+    const res = await DB.collection('userList').where({
+        _openid
+    }).update({
+        data
+    })
+    return res?.stats?.updated !== 0
+}
+
 export {
     setBackupData,
-    setDownloadData
+    setDownloadData,
+    updateUserAutoSync
 }

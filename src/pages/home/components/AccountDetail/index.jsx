@@ -61,7 +61,7 @@ class AccountDetail extends Component {
                 let accountList = list.length ? list : (Taro.getStorageSync('accountList') || [])
                 this.setState({ accountList })
                 accountList.splice(accountList.map(item => item.id).indexOf(account?.id), 1)
-                setStorage('accountList', accountList).then(() => {
+                setStorage('accountList', accountList, true).then(() => {
                     getAccountList()
                     showToast('删除成功')
                 })

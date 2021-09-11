@@ -20,11 +20,19 @@ export default class Home extends Component {
 
     componentDidMount() {
         this.getIsUpdatedFirst()
+        this.getCloudAutoSync()
         
         showShareMenu()
     }
 
-    // 是否更新后第一次进入小程序
+    // 是否打开了自动同步
+    getCloudAutoSync = async () => {
+        const { getCloudIsPayAutoSync } = require('../../../utils/user')
+        const { autoSync } = await getCloudIsPayAutoSync()
+        setStorage('autoSync', autoSync)
+    }
+
+    // 是否更新后第一次进入小程序，展示版本号和更新日志
     getIsUpdatedFirst = () => {
         let localVersion = Taro.getStorageSync('version')
         const logVisible = localVersion !== version

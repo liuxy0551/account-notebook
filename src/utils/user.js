@@ -9,8 +9,7 @@ const getUserProfile = async () => {
     return new Promise((resolve, reject) => {
         Taro.getUserProfile({
             desc: `云同步需要授权用户信息`,
-            success: async (res) => {
-                const { userInfo } = res
+            success: async ({ userInfo }) => {
                 setStorage('userInfo', userInfo)
                 uploadUserInfo(userInfo)
                 resolve(userInfo)

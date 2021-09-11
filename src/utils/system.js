@@ -57,6 +57,7 @@ const startSoterAuthentication = () => {
 const cloudInit = () => {
     Taro.cloud.init({
         env: 'prod-3g3ayg0q48089ea7',
+        // env: 'dev-6ggex9bb17c68960',
         traceUser: true
     })
 }

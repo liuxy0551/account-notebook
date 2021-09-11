@@ -61,7 +61,7 @@ export default class Home extends Component {
             name
         })
 
-        setStorage('tagList', list).then(() => {
+        setStorage('tagList', list, true).then(() => {
             showToast('保存成功').then(() => {
                 this.setState({ loading: false })
                 Taro.navigateBack()
