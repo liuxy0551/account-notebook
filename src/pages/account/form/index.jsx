@@ -130,7 +130,7 @@ export default class Home extends Component {
                 return item.id === accountId ? account : item
             })
         } else {
-            accountList.push(account)
+            accountList.unshift(account)
         }
 
         setStorage('accountList', accountList, true).then(() => {
