@@ -103,12 +103,12 @@ class AccountDetail extends Component {
                                     <View className='value' onClick={() => { this.copyText(account.password) }}>{ account.password }</View>
                                 </View>
                                 <View className='item'>
-                                    <View className='label'>备注</View>
-                                    <View className='value'>{ account.note || '无' }</View>
-                                </View>
-                                <View className='item'>
                                     <View className='label'>标签</View>
                                     <View className='value'>{ tagNameList.join('、') || '无' }</View>
+                                </View>
+                                <View className='item'>
+                                    <View className='label'>备注</View>
+                                    <View className='value'>{ account.note || '无' }</View>
                                 </View>
                                 <View className='item'>
                                     <View className='label'>修改时间</View>

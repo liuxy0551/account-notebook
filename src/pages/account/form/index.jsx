@@ -163,12 +163,12 @@ export default class Home extends Component {
                             <Input className='account-input' value={password} onInput={this.handlePasswordChange} placeholder='请输入密码' maxlength={50} focus={passwordFocus} onBlur={() => { this.setState({ passwordFocus: false }) }} />
                         </View>
                         <View className='form-item'>
-                            <View className='label'>备注</View>
-                            <Input className='account-input' value={note} onInput={this.handleNoteChange} placeholder='请输入备注' maxlength={200} />
-                        </View>
-                        <View className='form-item'>
                             <View className='label'>标签</View>
                             <View className='tag-name' onClick={this.handleTagList}>{ tagList.map(item => item.name).join('、') || '无' }</View>
+                        </View>
+                        <View className='form-item'>
+                            <View className='label'>备注</View>
+                            <Input className='account-input' value={note} onInput={this.handleNoteChange} placeholder='请输入备注' maxlength={200} />
                         </View>
                     </View>
 
