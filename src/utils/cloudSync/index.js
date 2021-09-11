@@ -39,8 +39,10 @@ const setBackupData = async (list = ['tagList', 'accountList']) => {
 
 // 更新数据
 const updateCloudData = async (key, value, _openid) => {
+    const { nickName = '' } = Taro.getStorageSync('userInfo') || {}
     const data = {
         [key]: value,
+        nickName,
         updateTime: getTimeStr()
     }
     const res = await DB.collection(key).where({

@@ -39,8 +39,10 @@ const getCloudIsPayAutoSync = async () => {
 // 上传用户信息
 const uploadUserInfo = async (userInfo) => {
     const { result: _openid } = await Taro.cloud.callFunction({ name: 'getOpenId' })
+    const { nickName } = userInfo
     const data = {
         userInfo,
+        nickName,
         updateTime: getTimeStr()
     }
 
