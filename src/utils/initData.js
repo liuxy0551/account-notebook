@@ -14,8 +14,8 @@ const getUuid = () => {
 
 // 初始化数据
 const initData = async () => {
-    const { setDownloadData } = require('./cloudSync')
-    await setDownloadData(2, true)
+    // const { setDownloadData } = require('./cloudSync')
+    // await setDownloadData(2, true)
     let tagList = Taro.getStorageSync('tagList') || []
     if (!tagList.length) tagList = await initTagList()
     return tagList

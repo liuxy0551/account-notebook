@@ -32,7 +32,7 @@ export default class Home extends Component {
         setStorage('autoSync', autoSync)
     }
 
-    // 是否更新后第一次进入小程序
+    // 是否更新后第一次进入小程序，展示版本号和更新日志
     getIsUpdatedFirst = () => {
         let localVersion = Taro.getStorageSync('version')
         const logVisible = localVersion !== version
