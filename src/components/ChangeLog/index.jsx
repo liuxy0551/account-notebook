@@ -8,6 +8,16 @@ class ChangeLog extends Component {
     state = {
         logList: [
             {
+                version: 'v1.3.5',
+                time: '2021-09-11 17:40',
+                pointList: [
+                    '账号列表顶部添加搜索框',
+                    '账号列表按时间倒序展示，新添加的在上面',
+                    '新增账号页面、查询账号详情两处的标签移到备注上方',
+                    '点击弹出账号详情弹框后，弹出内容可复制提示确认框，仅展示一次'
+                ]
+            },
+            {
                 version: 'v1.3.4',
                 time: '2021-08-26 23:04',
                 pointList: [

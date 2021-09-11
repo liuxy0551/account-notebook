@@ -5,8 +5,21 @@
     .account-content {
         flex: 1;
         overflow: auto;
+        .search-box {
+            width: 470rpx;
+            padding: 20rpx;
+            box-shadow: 0 4rpx 12rpx -4rpx rgba(0, 0, 0, 0.16);
+            background-color: #fff;
+            position: absolute;
+            .search-input {
+                padding: 10rpx 20rpx;
+                border-radius: 8rpx;
+                border: 2rpx #eee solid;
+            }
+        }
+
         .account-box {
-            padding: 40rpx;
+            padding: 100rpx 40rpx 40rpx;
             .account-item {
                 padding: 40rpx 0;
                 border-bottom: 2rpx #eee solid;
