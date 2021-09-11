@@ -22,9 +22,22 @@ class AccountDetail extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        const { account } = this.props
+        const { account, accountVisible } = this.props
         if (JSON.stringify(prevProps.account) !== JSON.stringify(account)) {
             this.getTagList()
+        }
+
+        if (accountVisible && accountVisible !== prevProps.accountVisible) {
+            const canCopyTipShowed = Taro.getStorageSync('canCopyTipShowed') || false
+            if (canCopyTipShowed) return
+            Taro.showModal({
+                showCancel: false,
+                confirmText: '知道了',
+                content: `点击账号名称、账号、密码的内容可进行复制`,
+                success: ({ confirm }) => {
+                    confirm && setStorage('canCopyTipShowed', true)
+                }
+            })
         }
     }
 
