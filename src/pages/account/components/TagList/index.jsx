@@ -55,7 +55,7 @@ class TagList extends Component {
         return (
             <AtFloatLayout isOpened={tagListVisible} onClose={onClose}>
                 <View className='tag-content'>
-                    <View className="tag-box-part">
+                    <View className='tag-box-part'>
                         <View className='tag-box'>
                             {
                                 tagList.map((item, idx) => {

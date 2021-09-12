@@ -161,6 +161,9 @@ export default class Home extends Component {
                         {
                             !!accountList.length ? this.rendAccountList() : <Empty />
                         }
+                        {
+                            selectedTagId === 'all' && accountList.length > 10 ? <View className='account-count'>共有 { accountList.length } 个账号</View> : null
+                        }
                     </View>
                 </View>
 
