@@ -15,6 +15,7 @@ export default class Home extends Component {
         optionList: [
             { name: '安全密码', url: '/pages/personal/password/index' },
             { name: '云同步', url: '/pages/personal/cloudSync/index', needLogin: true },
+            { name: '导入导出', url: '/pages/personal/importExport/index', needLogin: true },
             { name: '联系开发者' },
             { name: '审查代码' },
             { name: '关于', url: '/pages/personal/about/index' },

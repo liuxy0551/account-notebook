@@ -1,0 +1,40 @@
+.container {
+    flex: 1;
+    overflow: auto;
+    .cloud-icon {
+        width: 750rpx;
+        height: 156rpx;
+        padding: 80rpx 0 60rpx;
+    }
+    .tip {
+        padding: 60rpx;
+        text-indent: 2em;
+        .tip-blod {
+            font-weight: 600;
+            padding: 0 8rpx;
+        }
+    }
+    .btn-box {
+        width: 520rpx;
+        margin: 0 auto;
+        display: flex;
+        .btn {
+            color: #fc5126;
+            width: 220rpx;
+            line-height: 70rpx;
+            border-radius: 12rpx;
+            background-color: #fff;
+            border: 2rpx #fc5126 solid;
+        }
+    }
+
+    .input-box {
+        padding: 80rpx 50rpx;
+        .content-input {
+            width: 610rpx;
+            padding: 20rpx;
+            border-radius: 8rpx;
+            border: 2rpx #eee solid;
+        }
+    }
+}
