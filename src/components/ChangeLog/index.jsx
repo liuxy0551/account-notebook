@@ -8,8 +8,16 @@ class ChangeLog extends Component {
     state = {
         logList: [
             {
+                version: 'v1.3.6',
+                time: '2021-09-12 17:36',
+                pointList: [
+                    '登录状态下可以进行导入导出',
+                    '首页选择全部账号时，账号数量大于 10，则可以在账号列表显示数量'
+                ]
+            },
+            {
                 version: 'v1.3.5',
-                time: '2021-09-11 17:40',
+                time: '2021-09-11 18:40',
                 pointList: [
                     '账号列表顶部添加搜索框',
                     '账号列表按时间倒序展示，新添加的在上面',
