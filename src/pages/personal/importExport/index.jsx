@@ -13,14 +13,22 @@ export default class Home extends Component {
 
     // 导出
     handleExport = () => {
-        const tagList = Taro.getStorageSync('tagList') || []
-        const accountList = Taro.getStorageSync('accountList') || []
-        const content = JSON.stringify({
-            tagList,
-            accountList
+        Taro.showModal({
+            cancelColor: '#999',
+            confirmText: '开始导出',
+            content: `导出内容为未加密的明文数据，请妥善保管！`,
+            success: ({ confirm }) => {
+                if (!confirm) return
+                const tagList = Taro.getStorageSync('tagList') || []
+                const accountList = Taro.getStorageSync('accountList') || []
+                const content = JSON.stringify({
+                    tagList,
+                    accountList
+                })
+                this.setState({ content })
+                Taro.setClipboardData({ data: content })
+            }
         })
-        this.setState({ content })
-        Taro.setClipboardData({ data: content })
     }
 
     // 导入
@@ -60,7 +68,7 @@ export default class Home extends Component {
         const fixTipedDate = Taro.getStorageSync('fixTipedDate')
         if (fixTipedDate === getTimeStr(true)) return
         Taro.showModal({
-            title: `请勿修改`,
+            title: `请勿修改数据`,
             showCancel: false,
             confirmText: '知道了',
             content: `请使用导出按钮生成的内容，手动修改数据会无法导入`,
