@@ -12,6 +12,7 @@ export default {
     'pages/personal/grid/index',
     'pages/personal/password/index',
     'pages/personal/cloudSync/index',
+    'pages/personal/dataManage/index',
     'pages/personal/importExport/index',
     'pages/personal/about/index',
   ],

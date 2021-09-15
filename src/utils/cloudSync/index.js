@@ -37,7 +37,7 @@ const setBackupData = async (list = ['tagList', 'accountList']) => {
     }
 }
 
-// 更新数据
+// 更新云端数据
 const updateCloudData = async (key, value, _openid) => {
     const { nickName = '' } = Taro.getStorageSync('userInfo') || {}
     const data = {
@@ -157,5 +157,6 @@ const updateUserAutoSync = async (autoSync) => {
 export {
     setBackupData,
     setDownloadData,
-    updateUserAutoSync
+    updateUserAutoSync,
+    updateCloudData
 }

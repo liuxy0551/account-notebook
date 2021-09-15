@@ -1,7 +1,7 @@
 // 初始化数据
 import Taro from '@tarojs/taro'
 import { setStorage } from './updateData'
-import { getTimeStr } from './index'
+import { getTimeStr, showToast } from './index'
 
 // 获取单个 uuid v4
 const getUuid = () => {
@@ -74,7 +74,36 @@ const initAccount = async (tagId1, tagId2) => {
     await setStorage('accountList', accountList)
 }
 
+// 清理本地数据
+const clearLocalData = async () => {
+    const tagList = [
+        {
+            id: 'all',
+            name: '全部账号'
+        }
+    ]
+    await setStorage('tagList', tagList)
+    await setStorage('accountList', [])
+}
+
+// 清理云端数据
+const clearCloudData = async () => {
+    const { updateCloudData } = require('./cloudSync')
+    Taro.showLoading({ title: '清理中...', mask: true })
+    const { result: _openid } = await Taro.cloud.callFunction({ name: 'getOpenId' })
+    try {
+        await updateCloudData('tagList', [], _openid)
+        await updateCloudData('accountList', [], _openid)
+    } catch (err) {
+        const msg = '清理失败，请稍后重试'
+        console.log(msg, err)
+        showToast(msg)
+    }
+}
+
 export {
     getUuid,
-    initData
+    initData,
+    clearLocalData,
+    clearCloudData
 }

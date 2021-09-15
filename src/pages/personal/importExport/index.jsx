@@ -2,9 +2,9 @@ import { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { View, Text, Textarea, Button } from '@tarojs/components'
 import TopBar from '../../../components/TopBar/index'
+import { getTimeStr, setStorage, showToast } from '../../../utils'
 
 import './index.scss'
-import { getTimeStr, setStorage, showToast } from '../../../utils'
 
 export default class Home extends Component {
     state = {

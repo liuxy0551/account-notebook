@@ -106,6 +106,12 @@ export default class Home extends Component {
         !showAutoSync && showToast('敬请期待')
     }
 
+    // 点击数据管理
+    handleDataManage = () => {
+        const url = '/pages/personal/dataManage/index'
+        Taro.navigateTo({ url })
+    }
+
     render() {
         const { isPay, autoSync, showContent, wechatPayUrl } = this.state
         return (
@@ -131,6 +137,10 @@ export default class Home extends Component {
                                     </View>
                                     <View className='row-item' onClick={() => { showToast('敬请期待') }}>
                                         <View className='name'>备份记录</View>
+                                        <Image className='more-icon' src={moreIconUrl} />
+                                    </View>
+                                    <View className='row-item' onClick={this.handleDataManage}>
+                                        <View className='name'>数据管理</View>
                                         <Image className='more-icon' src={moreIconUrl} />
                                     </View>
                                     <View className='row-item'>
