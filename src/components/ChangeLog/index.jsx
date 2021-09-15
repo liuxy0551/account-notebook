@@ -8,6 +8,13 @@ class ChangeLog extends Component {
     state = {
         logList: [
             {
+                version: 'v1.3.7',
+                time: '2021-09-15 21:22',
+                pointList: [
+                    '新增 清除本地数据、清除云端数据，入口在：云同步 -> 数据管理'
+                ]
+            },
+            {
                 version: 'v1.3.6',
                 time: '2021-09-12 17:36',
                 pointList: [
