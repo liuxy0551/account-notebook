@@ -8,6 +8,13 @@ class ChangeLog extends Component {
     state = {
         logList: [
             {
+                version: 'v1.3.8',
+                time: '2021-09-21 17:00',
+                pointList: [
+                    '导入导出页面，输入框占满剩余区域'
+                ]
+            },
+            {
                 version: 'v1.3.7',
                 time: '2021-09-15 21:22',
                 pointList: [

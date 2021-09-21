@@ -1,6 +1,7 @@
 .container {
     flex: 1;
-    overflow: auto;
+    display: flex;
+    flex-direction: column;
     .tip {
         padding: 60rpx;
         text-indent: 2em;
@@ -24,9 +25,11 @@
     }
 
     .input-box {
+        flex: 1;
         padding: 80rpx 50rpx;
         .content-input {
             width: 610rpx;
+            height: 100%;
             padding: 20rpx;
             border-radius: 8rpx;
             border: 2rpx #eee solid;

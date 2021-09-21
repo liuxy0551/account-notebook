@@ -98,7 +98,7 @@ export default class Home extends Component {
                     </View>
 
                     <View className='input-box'>
-                        <Textarea className='content-input' autoHeight maxlength={-1} value={content} onInput={this.handleContentChange} onFocus={this.handleContentFocus} placeholder='请点击上方的导出按钮自动生成内容' />
+                        <Textarea className='content-input' maxlength={-1} value={content} onInput={this.handleContentChange} onFocus={this.handleContentFocus} placeholder='请点击上方的导出按钮自动生成内容' />
                     </View>
                 </View>
             </View>
