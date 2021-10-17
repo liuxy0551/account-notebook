@@ -6,7 +6,7 @@
 .add-btn {
     width: 60rpx;
     height: 60rpx;
-    padding: 16rpx;
+    padding: 18rpx;
     border-radius: 50%;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.28);
@@ -14,7 +14,7 @@
     align-items: center;
     justify-content: center;
     position: absolute;
-    bottom: 120rpx;
+    bottom: 110rpx;
     right: 60rpx;
     &.password {
         width: 50rpx;
@@ -22,6 +22,9 @@
         top: 160rpx;
         right: 50rpx;
         opacity: 0;
+    }
+    &.upload-icon {
+        bottom: 240rpx;
     }
 }
 

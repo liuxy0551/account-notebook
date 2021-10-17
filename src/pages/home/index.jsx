@@ -6,7 +6,10 @@ import Empty from '../../components/Empty/index'
 import Tabs from './components/Tabs/index'
 import AccountDetail from './components/AccountDetail/index'
 import { setStorage, getTimeStr, initData, showShareMenu } from '../../utils'
+import { setBackupData } from '../../utils/cloudSync'
+import { getCloudIsPayAutoSync } from '../../utils/user'
 import addBtnUrl from '../../assets/images/add-btn.png'
+import uploadIconUrl from '../../assets/images/upload-icon.png'
 
 import './index.scss'
 
@@ -18,10 +21,12 @@ export default class Home extends Component {
         accountVisible: false,
         account: null,
         userInfo: null,
-        search: ''
+        search: '',
+        isPay: false
     }
 
     componentDidMount() {
+        this.getIsPayAutoSync()
         showShareMenu()
     }
 
@@ -30,6 +35,12 @@ export default class Home extends Component {
         const { userInfo } = this.state
         this.getTagList()
         !userInfo && this.getUserInfo()
+    }
+
+    // 是否支付过、自动同步
+    getIsPayAutoSync = async () => {
+        const { isPay } = await getCloudIsPayAutoSync()
+        this.setState({ isPay })
     }
 
     getUserInfo = () => {
@@ -104,6 +115,18 @@ export default class Home extends Component {
         Taro.navigateTo({ url: `/pages/account/form/index` })
     }
 
+    // 主动备份
+    handleUpload = () => {
+        const { isPay } = this.state
+        isPay && Taro.showModal({
+            confirmText: '开始备份',
+            content: `备份操作会覆盖云端内容，是否立即备份？`,
+            success: ({ confirm }) => {
+                confirm && setBackupData()
+            }
+        })
+    }
+
     // 编辑
     showAccount= (account) => {
         this.setState({
@@ -146,7 +169,7 @@ export default class Home extends Component {
     }
 
     render() {
-        const { selectedTagId, tagList, accountList, accountVisible, account, userInfo, search } = this.state
+        const { selectedTagId, tagList, accountList, accountVisible, account, userInfo, search, isPay } = this.state
 
         return (
             <View className='full-page'>
@@ -168,6 +191,9 @@ export default class Home extends Component {
                 </View>
 
                 <Image className='add-btn' src={addBtnUrl} onClick={this.addAccount} />
+                {
+                    isPay && <Image className='add-btn upload-icon' src={uploadIconUrl} onClick={this.handleUpload} />
+                }
 
                 <AccountDetail accountVisible={accountVisible} account={account} onClose={this.onClose} getAccountList={this.getAccountList} />
             </View>
