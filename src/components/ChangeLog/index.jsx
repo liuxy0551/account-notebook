@@ -8,6 +8,13 @@ class ChangeLog extends Component {
     state = {
         logList: [
             {
+                version: 'v1.3.10',
+                time: '2021-10-20 14:49',
+                pointList: [
+                    'ios 端导入导出页样式修改'
+                ]
+            },
+            {
                 version: 'v1.3.9',
                 time: '2021-10-17 22:34',
                 pointList: [
