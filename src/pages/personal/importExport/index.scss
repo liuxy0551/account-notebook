@@ -26,6 +26,7 @@
 
     .input-box {
         flex: 1;
+        overflow: hidden;
         padding: 80rpx 50rpx;
         .content-input {
             width: 610rpx;
