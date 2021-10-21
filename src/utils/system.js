@@ -12,7 +12,7 @@ const getFingerPrintSupport = () => {
         if (fingerPrintSupport) return resolve(fingerPrintSupport)
         Taro.checkIsSupportSoterAuthentication({
             success: (res) => {
-                if (!res?.supportMode.includes('fingerPrint')) return
+                if (!res?.supportMode.includes('fingerPrint')) return resolve(false)
                 Taro.checkIsSoterEnrolledInDevice({
                     checkAuthMode: 'fingerPrint',
                     success: (result) => {

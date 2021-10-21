@@ -8,6 +8,13 @@ class ChangeLog extends Component {
     state = {
         logList: [
             {
+                version: 'v1.3.11',
+                time: '2021-10-21 20:44',
+                pointList: [
+                    '修复 iPhone 13 进入小程序时一直显示加载中，Face ID 的苹果手机应该有同类问题。'
+                ]
+            },
+            {
                 version: 'v1.3.10',
                 time: '2021-10-20 14:49',
                 pointList: [
