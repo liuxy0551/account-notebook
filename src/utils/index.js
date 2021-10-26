@@ -2,6 +2,7 @@ import Taro from '@tarojs/taro'
 import { getUuid, initData, clearLocalData, clearCloudData } from './initData'
 import { getFingerPrintSupport, startSoterAuthentication, cloudInit, getUpdateInfo } from './system'
 import { setStorage } from './updateData'
+import { getRandomPassword } from './password'
 
 // 获取当前时间
 const getTimeStr = (isDay = false) => {
@@ -81,5 +82,6 @@ export {
     getTopBarHeight,
     initData,
     clearLocalData,
-    clearCloudData
+    clearCloudData,
+    getRandomPassword
 }

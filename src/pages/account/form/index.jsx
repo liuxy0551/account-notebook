@@ -4,6 +4,7 @@ import { View, Input, Button, Image } from '@tarojs/components'
 import { getUuid, showToast, setStorage, getTimeStr, showShareMenu } from '../../../utils'
 import TopBar from '../../../components/TopBar/index'
 import TagList from '../components/TagList'
+import NewPassword from '../components/NewPassword'
 import passwordIconUrl from '../../../assets/images/password-icon.png'
 
 import './index.scss'
@@ -23,7 +24,8 @@ export default class Home extends Component {
         nameFocus: true,
         usernameFocus: false,
         passwordFocus: false,
-        tagListVisible: false
+        tagListVisible: false,
+        passwordVisible: false
     }
 
     componentDidMount() {
@@ -53,7 +55,7 @@ export default class Home extends Component {
     }
 
     getPassword = () => {
-
+        this.setState({ passwordVisible: true })
     }
 
     // 账号名称输入框变化
@@ -85,8 +87,16 @@ export default class Home extends Component {
         this.setState({ tagListVisible: true })
     }
 
-    onClose = () => {
+    onTagClose = () => {
         this.setState({ tagListVisible: false })
+    }
+
+    onPasswordConfirm = () => {
+        this.setState({ passwordVisible: false })
+    }
+
+    onPasswordClose = () => {
+        this.setState({ passwordVisible: false })
     }
 
     // 选择标签
@@ -142,7 +152,7 @@ export default class Home extends Component {
     }
 
     render() {
-        const { title, name, username, password, note, tagList, tagIdList, loading, nameFocus, usernameFocus, passwordFocus, tagListVisible } = this.state
+        const { title, name, username, password, note, tagList, tagIdList, loading, nameFocus, usernameFocus, passwordFocus, tagListVisible, passwordVisible } = this.state
 
         return (
             <View className='full-page'>
@@ -179,7 +189,8 @@ export default class Home extends Component {
 
                 <Image className='add-btn password' src={passwordIconUrl} onClick={this.getPassword} />
 
-                <TagList tagListVisible={tagListVisible} tagIdList={tagIdList} onConfirm={this.onTagConfirm} onClose={this.onClose} />
+                <TagList tagListVisible={tagListVisible} tagIdList={tagIdList} onConfirm={this.onTagConfirm} onClose={this.onTagClose} />
+                <NewPassword passwordVisible={passwordVisible} onConfirm={this.onPasswordConfirm} onClose={this.onPasswordClose} />
             </View>
         )
     }

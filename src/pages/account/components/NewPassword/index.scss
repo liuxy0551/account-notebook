@@ -1,0 +1,53 @@
+.password-content {
+    height: 800rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .title-row {
+        padding: 30rpx 40rpx 20rpx;
+        border-radius: 30rpx 30rpx 0 0;
+        border-bottom: 2rpx #eee solid;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .title {
+            flex: 1;
+            font-size: 32rpx;
+            font-weight: 600;
+        }
+        .reset {
+            color: #576b95;
+            font-size: 26rpx;
+            cursor: pointer;
+        }
+    }
+    .password-text {
+        color: #10a25b;
+        width: 670rpx;
+        height: 120rpx;
+        font-size: 36rpx;
+        font-weight: 600;
+        margin: 30rpx 40rpx;
+        word-break: break-all;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+    .picker-checkbox {
+        flex: 1;
+        margin: 0 40rpx 40rpx;
+        border: 1px red solid;
+        .picker-part {
+
+        }
+        .checkbox-part {
+
+        }
+    }
+}
+
+// 隐藏滚动条
+::-webkit-scrollbar {
+    display: none;
+}
