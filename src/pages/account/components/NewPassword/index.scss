@@ -1,5 +1,5 @@
 .password-content {
-    height: 800rpx;
+    height: 798rpx;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -24,25 +24,40 @@
     .password-text {
         color: #10a25b;
         width: 670rpx;
-        height: 120rpx;
-        font-size: 36rpx;
+        font-size: 34rpx;
         font-weight: 600;
         margin: 30rpx 40rpx;
-        word-break: break-all;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
+        text-align: center;
+        .password {
+            padding: 10rpx 0;
+            line-height: 48rpx;
+            white-space: nowrap;
+            cursor: pointer;
+        }
     }
     .picker-checkbox {
         flex: 1;
-        margin: 0 40rpx 40rpx;
-        border: 1px red solid;
+        margin: 0 40rpx 40rpx 80rpx;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         .picker-part {
-
+            width: 200rpx;
+            border: 2rpx #ddd solid;
+            .picker-content {
+                height: 360rpx;
+                text-align: center;
+                .text {
+                    line-height: 68rpx;
+                }
+            }
         }
         .checkbox-part {
-
+            width: 300rpx;
+            .checkbox {
+                font-size: 30rpx;
+                line-height: 80rpx;
+            }
         }
     }
 }

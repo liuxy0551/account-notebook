@@ -91,8 +91,11 @@ export default class Home extends Component {
         this.setState({ tagListVisible: false })
     }
 
-    onPasswordConfirm = () => {
-        this.setState({ passwordVisible: false })
+    onPasswordConfirm = (password) => {
+        this.setState({
+            password,
+            passwordVisible: false
+        })
     }
 
     onPasswordClose = () => {
