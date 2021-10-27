@@ -8,42 +8,50 @@ class ChangeLog extends Component {
     state = {
         logList: [
             {
-                version: 'v1.3.11',
+                version: 'V1.4.0',
+                time: '2021-10-27 21:59',
+                pointList: [
+                    '新增、编辑账号页面在密码输入框附近添加一个密码浮动按钮，点击后弹出弹框，用于生成随机密码',
+                    '生成随机密码'
+                ]
+            },
+            {
+                version: 'V1.3.11',
                 time: '2021-10-21 20:44',
                 pointList: [
                     '修复 iPhone 13 进入小程序时一直显示加载中，Face ID 的苹果手机应该有同类问题。'
                 ]
             },
             {
-                version: 'v1.3.10',
+                version: 'V1.3.10',
                 time: '2021-10-20 14:49',
                 pointList: [
                     'ios 端导入导出页样式修改'
                 ]
             },
             {
-                version: 'v1.3.9',
+                version: 'V1.3.9',
                 time: '2021-10-17 22:34',
                 pointList: [
                     '首页新增备份按钮，悬浮在添加按钮上方'
                 ]
             },
             {
-                version: 'v1.3.8',
+                version: 'V1.3.8',
                 time: '2021-09-21 17:00',
                 pointList: [
                     '导入导出页面，输入框占满剩余区域'
                 ]
             },
             {
-                version: 'v1.3.7',
+                version: 'V1.3.7',
                 time: '2021-09-15 21:22',
                 pointList: [
                     '新增 清除本地数据、清除云端数据，入口在：云同步 -> 数据管理'
                 ]
             },
             {
-                version: 'v1.3.6',
+                version: 'V1.3.6',
                 time: '2021-09-12 17:36',
                 pointList: [
                     '登录状态下可以进行导入导出',
@@ -51,7 +59,7 @@ class ChangeLog extends Component {
                 ]
             },
             {
-                version: 'v1.3.5',
+                version: 'V1.3.5',
                 time: '2021-09-11 18:40',
                 pointList: [
                     '账号列表顶部添加搜索框',
@@ -61,14 +69,14 @@ class ChangeLog extends Component {
                 ]
             },
             {
-                version: 'v1.3.4',
+                version: 'V1.3.4',
                 time: '2021-08-26 23:04',
                 pointList: [
                     '自动同步功能支持开发者配置开启，开启后可关闭，关闭后再次开启需要联系开发者'
                 ]
             },
             {
-                version: 'v1.3.3',
+                version: 'V1.3.3',
                 time: '2021-08-01 23:53',
                 pointList: [
                     '代码开源',
@@ -76,7 +84,7 @@ class ChangeLog extends Component {
                 ]
             },
             {
-                version: 'v1.3.2',
+                version: 'V1.3.2',
                 time: '2021-08-01 21:35',
                 pointList: [
                     '可以分享给朋友、朋友圈了',
@@ -85,7 +93,7 @@ class ChangeLog extends Component {
                 ]
             },
             {
-                version: 'v1.3.1',
+                version: 'V1.3.1',
                 time: '2021-08-01 18:02',
                 pointList: [
                     '修复 更新后进入小程序跳到更新日志页面但提示指纹解锁',
@@ -94,7 +102,7 @@ class ChangeLog extends Component {
                 ]
             },
             {
-                version: 'v1.3.0',
+                version: 'V1.3.0',
                 time: '2021-08-01 12:39',
                 pointList: [
                     '支持开发者后可以使用云同步啦~',
@@ -102,14 +110,14 @@ class ChangeLog extends Component {
                 ]
             },
             {
-                version: 'v1.2.0',
+                version: 'V1.2.0',
                 time: '2021-07-29 23:07',
                 pointList: [
                     '进入小程序可以使用指纹解锁啦~'
                 ]
             },
             {
-                version: 'v1.1.0',
+                version: 'V1.1.0',
                 time: '2021-07-28 22:40',
                 pointList: [
                     '新增安全密码编辑页面，支持安全密码设置，打开需要输入安全密码',
@@ -119,7 +127,7 @@ class ChangeLog extends Component {
                 ]
             },
             {
-                version: 'v1.0.0',
+                version: 'V1.0.0',
                 time: '2021-07-25 15:39',
                 pointList: [
                     '标签管理、账号管理等基础功能'
