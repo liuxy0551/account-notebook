@@ -104,7 +104,7 @@ export default class Home extends Component {
 
     // 选择标签
     onTagConfirm = (tagList) => {
-        this.onClose()
+        this.onTagClose()
         this.setState({ tagList })
     }
 

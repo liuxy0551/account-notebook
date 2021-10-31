@@ -8,6 +8,13 @@ class ChangeLog extends Component {
     state = {
         logList: [
             {
+                version: 'V1.4.1',
+                time: '2021-10-31 10:10',
+                pointList: [
+                    '修复选择标签后无法保存'
+                ]
+            },
+            {
                 version: 'V1.4.0',
                 time: '2021-10-27 21:59',
                 pointList: [
