@@ -18,7 +18,7 @@
 
 #### 2.2、小程序截图
 
-![](https://liuxy0551.gitee.io/image-hosting/posts/account-notebook/1.png)
+![](https://liuxy0551.gitee.io/image-hosting/posts/account-notebook/1-1.png)
 
 
 #### 2.3、云端数据截图
@@ -42,8 +42,8 @@
 - [x] 代码开源
 - [x] 系列文章
 - [x] 账号密码自动同步
+- [x] 账号列表顶部模糊搜索框
 - [ ] 云同步记录
-- [ ] 账号列表顶部模糊搜索框
 
 #### 3.2、使用说明
 
