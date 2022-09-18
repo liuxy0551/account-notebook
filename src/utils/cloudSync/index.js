@@ -9,7 +9,7 @@ const DB = Taro.cloud.database()
 const setBackupData = async (list = ['tagList', 'accountList']) => {
     list.length === 2 && Taro.showLoading({ title: '备份中...', mask: true })
     try {
-        const { result: _openid } = await Taro.cloud.callFunction({ name: 'getOpenId' })
+        const _openid = Taro.getStorageSync('_openid')
 
         let tagList, accountList
         if (list.includes('tagList')) {
@@ -45,6 +45,8 @@ const updateCloudData = async (key, value, _openid) => {
         nickName,
         updateTime: getTimeStr()
     }
+
+    // 有备份记录则更新
     const res = await DB.collection(key).where({
         _openid
     }).update({
@@ -52,28 +54,28 @@ const updateCloudData = async (key, value, _openid) => {
     })
 
     if (res?.stats?.updated !== 0) return
-    // 没有备份记录
+    // 没有备份记录则新增备份
     await DB.collection(key).add({
         data
     })
 }
 
-// 下载后解密账号和密码 isFrst 为 true 的时候，是第一次进入小程序下载远程数据
-const setDownloadData = async (index, isFrst = false) => {
-    !isFrst && Taro.showLoading({ title: '下载中...', mask: true })
+// 下载后解密账号和密码 isFirst 为 true 的时候，是第一次进入小程序下载远程数据
+const setDownloadData = async (index, isFirst = false) => {
+    !isFirst && Taro.showLoading({ title: '下载中...', mask: true })
     try {
-        const { result: _openid } = await Taro.cloud.callFunction({ name: 'getOpenId' })
+        const _openid = Taro.getStorageSync('_openid')
 
         const { data: tagListData = [] } = await DB.collection('tagList').where({ _openid }).get()
         const { data: accountListData = [] } = await DB.collection('accountList').where({ _openid }).get()
 
         if (!tagListData.length && !accountListData.length) {
-            !isFrst && showToast('没有备份记录，请先备份')
+            !isFirst && showToast('没有备份记录，请先备份')
         } else {
             const { tagList } = tagListData[0]
             const { accountList } = accountListData[0]
             await setDataStorage(index, tagList, accountList)
-            !isFrst && showToast(`${ index === 2 ? '下载' : '合并' }成功`).then(() => {
+            !isFirst && showToast(`${ index === 2 ? '下载' : '合并' }成功`).then(() => {
                 Taro.navigateBack({ delta: 2 })
             })
         }
@@ -140,7 +142,7 @@ const setDataStorage = async (index, cloudTagList, cloudAccountList) => {
 
 // 更新用户自动同步的配置项
 const updateUserAutoSync = async (autoSync) => {
-    const { result: _openid } = await Taro.cloud.callFunction({ name: 'getOpenId' })
+    const _openid = Taro.getStorageSync('_openid')
     const data = {
         autoSync,
         updateTime: getTimeStr()

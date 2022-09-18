@@ -25,7 +25,7 @@ const getUserProfile = async () => {
 
 // 是否支付过、自动同步
 const getCloudIsPayAutoSync = async () => {
-    const { result: _openid } = await Taro.cloud.callFunction({ name: 'getOpenId' })
+    const _openid = Taro.getStorageSync('_openid')
     const { data: userList = [] } = await DB.collection('userList').where({ _openid }).get()
     const userInfo = userList[0]
     let isPay = !!userInfo?.isPay
@@ -38,7 +38,7 @@ const getCloudIsPayAutoSync = async () => {
 
 // 上传用户信息
 const uploadUserInfo = async (userInfo) => {
-    const { result: _openid } = await Taro.cloud.callFunction({ name: 'getOpenId' })
+    const _openid = Taro.getStorageSync('_openid')
     const { nickName } = userInfo
     const data = {
         userInfo,

@@ -3,6 +3,7 @@ import Taro from '@tarojs/taro'
 import { View, Text, Input, Button } from '@tarojs/components'
 import ChangeLog from '../../../components/ChangeLog'
 import { showToast, getFingerPrintSupport, startSoterAuthentication, setStorage, showShareMenu } from '../../../utils'
+import API from '../../../utils/api'
 import TopBar from '../../../components/TopBar/index'
 import { version } from '../../../../package.json'
 
@@ -19,10 +20,21 @@ export default class Home extends Component {
     }
 
     componentDidMount() {
+        this.getOpenId()
         this.getIsUpdatedFirst()
         this.getCloudAutoSync()
         
         showShareMenu()
+    }
+
+    // 获取并保存 openId
+    getOpenId = async () => {
+        Taro.login({
+            success: async (result) => {
+                const { data: _openId } = await API.getOpenId({ code: result.code })
+                setStorage('_openId', _openId)
+            }
+        })
     }
 
     // 是否打开了自动同步
