@@ -1,10 +1,12 @@
 import { Component } from 'react'
-import { cloudInit, getUpdateInfo } from './utils'
+import { getUpdateInfo } from './utils'
+// import { cloudInit, getUpdateInfo } from './utils'
 import './app.scss'
 
 class App extends Component {
     componentDidMount() {
-        cloudInit()
+        // 暂停使用微信小程序云开发
+        // cloudInit()
         getUpdateInfo()
     }
 

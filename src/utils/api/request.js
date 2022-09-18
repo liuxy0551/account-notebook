@@ -1,4 +1,5 @@
 import Taro from '@tarojs/taro'
+import { showToast } from '../index'
 
 // 封装公共请求方法
 function request (url, data = { loading: false }, method = 'GET') {
@@ -9,24 +10,23 @@ function request (url, data = { loading: false }, method = 'GET') {
     Taro.request({
       url,
       data,
-      // header: { authorization: `Bearer ${ wepy.store.getters['user/token'] }` },
       method,
       timeout: 20 * 1000,
       success: res => {
         if (res.statusCode === 200) {
           if (res.data.code !== 200) {
-            Taro.toast(res.data.message)
+            showToast(res.data.message)
             reject(res || {})
           } else {
             resolve(res.data || {})
           }
         } else {
-          Taro.toast(res.data.message || res.statusCode.toString())
+          showToast(res.data.message || res.statusCode.toString())
         }
         data.loading && Taro.hideLoading()
       },
       fail: err => {
-        Taro.toast('请求失败')
+        showToast('请求失败')
 
         reject(err)
         data.loading && Taro.hideLoading()

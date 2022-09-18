@@ -27,12 +27,12 @@ export default class Home extends Component {
         showShareMenu()
     }
 
-    // 获取并保存 openId
+    // 获取并保存 _openid
     getOpenId = async () => {
         Taro.login({
             success: async (result) => {
-                const { data: _openId } = await API.getOpenId({ code: result.code })
-                setStorage('_openId', _openId)
+                const { data: _openid } = await API.getOpenId({ code: result.code })
+                setStorage('_openid', _openid)
             }
         })
     }
