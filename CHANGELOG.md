@@ -1,3 +1,18 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [2.0.1](https://github.com/liuxy0551/account-notebook/compare/v1.4.1...v2.0.1) (2022-11-12)
+
+
+### Features
+
+* password docs ([36577cf](https://github.com/liuxy0551/account-notebook/commit/36577cf8a6cb9c88f3853125d550da69c0c75620))
+* remote img ([b82eb05](https://github.com/liuxy0551/account-notebook/commit/b82eb0526099080d8e00e575351ad7f2c2c78d5d))
+* remove tencent cloud develop ([0c60c98](https://github.com/liuxy0551/account-notebook/commit/0c60c9875249deac481eb445f06c52fc2ec17376))
+* repeat _openid ([ef30194](https://github.com/liuxy0551/account-notebook/commit/ef301949e2987c8bfbcb8989c548483f04f77e15))
+* replace 1.png by 1-1.png ([bdf0eb0](https://github.com/liuxy0551/account-notebook/commit/bdf0eb04f80fea798a4a51d25a5b11fcbab87358))
+
 ## [1.4.1](https://github.com/liuxy0551/account-notebook/compare/v1.3.11...v1.4.1) (2021-10-31)
 
 
@@ -186,6 +201,3 @@
 * init data when no storage ([263467b](https://github.com/liuxy0551/account-notebook/commit/263467bea1091c99e554cc83b07cc280d7eaa13c))
 * tag account is connected ([d62ed16](https://github.com/liuxy0551/account-notebook/commit/d62ed161dd990948aa7b0e0fc4df4983df2d126d))
 * tag manage ([386d4dc](https://github.com/liuxy0551/account-notebook/commit/386d4dc0251e4a1ef9f77658cf3af8ae4ec2927c))
-
-
-

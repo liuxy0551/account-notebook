@@ -1,6 +1,6 @@
 {
   "name": "account-notebook",
-  "version": "1.4.1",
+  "version": "2.0.1",
   "private": true,
   "description": "",
   "templateInfo": {
@@ -27,7 +27,8 @@
     "build:rn": "taro build --type rn",
     "build:qq": "taro build --type qq",
     "build:jd": "taro build --type jd",
-    "build:quickapp": "taro build --type quickapp"
+    "build:quickapp": "taro build --type quickapp",
+    "release": "standard-version"
   },
   "browserslist": [
     "last 3 versions",
