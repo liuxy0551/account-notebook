@@ -1,8 +1,7 @@
 import Taro from '@tarojs/taro'
 import { getTimeStr, showToast } from './index'
 import { setStorage } from './updateData'
-
-const DB = Taro.cloud.database()
+import API from './api'
 
 // 获取用户信息
 const getUserProfile = async () => {
@@ -25,9 +24,8 @@ const getUserProfile = async () => {
 
 // 是否支付过、自动同步
 const getCloudIsPayAutoSync = async () => {
-    const { result: _openid } = await Taro.cloud.callFunction({ name: 'getOpenId' })
-    const { data: userList = [] } = await DB.collection('userList').where({ _openid }).get()
-    const userInfo = userList[0]
+    const _openid = Taro.getStorageSync('_openid')
+    const { data: userInfo } = await API.getUserInfo({ _openid })
     let isPay = !!userInfo?.isPay
     let autoSync = isPay ? !!userInfo?.autoSync : false
     return {
@@ -38,23 +36,15 @@ const getCloudIsPayAutoSync = async () => {
 
 // 上传用户信息
 const uploadUserInfo = async (userInfo) => {
-    const { result: _openid } = await Taro.cloud.callFunction({ name: 'getOpenId' })
+    const _openid = Taro.getStorageSync('_openid')
     const { nickName } = userInfo
     const data = {
         userInfo,
         nickName,
+        _openid,
         updateTime: getTimeStr()
     }
-
-    const res = await DB.collection('userList').where({
-        _openid
-    }).update({
-        data
-    })
-    if (res?.stats?.updated !== 0) return
-    DB.collection('userList').add({
-        data
-    })
+    API.updateUserInfo(data)
 }
 
 export {

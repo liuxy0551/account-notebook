@@ -90,10 +90,9 @@ const clearLocalData = async () => {
 const clearCloudData = async () => {
     const { updateCloudData } = require('./cloudSync')
     Taro.showLoading({ title: '清理中...', mask: true })
-    const { result: _openid } = await Taro.cloud.callFunction({ name: 'getOpenId' })
     try {
-        await updateCloudData('tagList', [], _openid)
-        await updateCloudData('accountList', [], _openid)
+        await updateCloudData([], false)
+        await updateCloudData([])
     } catch (err) {
         const msg = '清理失败，请稍后重试'
         console.log(msg, err)

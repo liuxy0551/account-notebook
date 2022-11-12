@@ -30,7 +30,7 @@ const getTopBarHeight = () => {
 }
 
 // toast
-const showToast = (title, duration = 1500) => {
+const showToast = (title = '', duration = 1500) => {
     return new Promise((resolve, reject) => {
         Taro.showToast({
             title,
