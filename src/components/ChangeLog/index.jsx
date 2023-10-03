@@ -8,6 +8,13 @@ class ChangeLog extends Component {
     state = {
         logList: [
             {
+                version: 'V2.0.1',
+                time: '2022-11-12 20:01',
+                pointList: [
+                    '不使用腾讯云的云函数'
+                ]
+            },
+            {
                 version: 'V1.4.1',
                 time: '2021-10-31 10:10',
                 pointList: [

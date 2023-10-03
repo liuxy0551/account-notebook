@@ -34,7 +34,6 @@ export default class Home extends Component {
         const fingerPrintSupport = Taro.getStorageSync('fingerPrintSupport') || false
         const useFingerPrint = Taro.getStorageSync('useFingerPrint')
         this.setState({ fingerPrintSupport, useFingerPrint })
-        console.log(useFingerPrint)
     }
 
     // 获取详情

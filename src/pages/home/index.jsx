@@ -170,6 +170,7 @@ export default class Home extends Component {
 
     render() {
         const { selectedTagId, tagList, accountList, accountVisible, account, userInfo, search, isPay } = this.state
+        const isDemo = accountList.length === 2 && accountList.every(item => item.name?.includes('Demo') && item.password?.includes('123456'))
 
         return (
             <View className='full-page'>
@@ -192,7 +193,7 @@ export default class Home extends Component {
 
                 <Image className='add-btn' src={addBtnUrl} onClick={this.addAccount} />
                 {
-                    isPay && <Image className='add-btn upload-icon' src={uploadIconUrl} onClick={this.handleUpload} />
+                    userInfo && isPay && !isDemo && <Image className='add-btn upload-icon' src={uploadIconUrl} onClick={this.handleUpload} />
                 }
 
                 <AccountDetail accountVisible={accountVisible} account={account} onClose={this.onClose} getAccountList={this.getAccountList} />
