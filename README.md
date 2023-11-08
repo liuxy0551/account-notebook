@@ -120,7 +120,7 @@ account-notebook
 git clone https://github.com/liuxy0551/account-notebook.git
 cd account-notebook
 yarn
-yarn dev:weapp
+yarn dev
 ```
 
 &emsp;&emsp;在微信开发者工具导入项目即可查看效果。
